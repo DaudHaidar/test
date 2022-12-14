@@ -1,13 +1,33 @@
 package com.test.demotest.dto;
 
-public class ResponseData {
-    private String token;
+import java.util.ArrayList;
+import java.util.List;
 
-    public String getToken() {
-        return token;
+public class ResponseData<T> {
+    private String status;
+    private String message;
+    private List<T> data = new ArrayList<T>();
+
+
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public String getMessage() {
+        return message;
+    }
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    public List<T> getData() {
+        return data;
+    }
+    public void setData(List<T> data) {
+        this.data = data;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+
+    
 }

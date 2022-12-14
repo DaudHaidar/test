@@ -8,7 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.test.demotest.Jwt.JwtUtils;
-import com.test.demotest.entitiy.T_Token;
+import com.test.demotest.entity.T_Token;
 import com.test.demotest.repository.T_TokenRepository;
 
 @Service

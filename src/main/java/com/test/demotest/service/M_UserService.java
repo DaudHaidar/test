@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.test.demotest.entitiy.M_User;
+import com.test.demotest.entity.M_User;
 import com.test.demotest.repository.M_UserRepository;
 
 @Service
@@ -17,29 +17,17 @@ public class M_UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-   
-
     public M_UserService (PasswordEncoder passwordEncoder){
         this.passwordEncoder = passwordEncoder;
     }
 
 
-    public M_User create(M_User m_user,  String request){
-        
-        if(request != null){
+    public M_User create(M_User m_user){
+            if(m_userRepo.findByUsername(m_user.getUsername())!= null){
+                throw new RuntimeException("Username sudah digunakan");
+            }
             m_user.setPassword(passwordEncoder.encode(m_user.getPassword()));
-            return m_userRepo.save(m_user);
-        }else{
-            M_User guest = new M_User();
-            guest.setIsActive(m_user.getIsActive());
-            guest.setPassword(passwordEncoder.encode(m_user.getPassword()));
-            guest.setUsername(m_user.getUsername());
-            guest.setRoleId(m_user.getRoleId());
-            return m_userRepo.save(guest);
-        }
-
-
-        
+            return m_userRepo.save(m_user);       
     }
 
     public M_User update(M_User m_user,String id){

@@ -1,8 +1,8 @@
 package com.test.demotest.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.demotest.entitiy.M_User;
+import com.test.demotest.dto.ResponseData;
+import com.test.demotest.dto.ResponseDataUser;
+import com.test.demotest.entity.M_User;
 import com.test.demotest.service.M_UserService;
 
 @RestController
@@ -23,26 +25,69 @@ public class M_UserController {
     private M_UserService m_userService;
 
     @PostMapping
-    public M_User save(@RequestBody M_User m_user,  HttpServletRequest request){
+    public ResponseEntity<ResponseData<ResponseDataUser>> save(@RequestBody M_User m_user){
+        try {
 
-        if(request.getHeader("Authorization") != null){
-            return m_userService.create(m_user, request.getHeader("Authorization"));
+            m_userService.create(m_user);
+
+            ResponseDataUser responseUser = new ResponseDataUser(); 
+            responseUser.setId(m_user.getId());
+            responseUser.setIsActive(m_user.getIsActive());
+            responseUser.setRoleId(m_user.getRoleId());
+            responseUser.setUsername(m_user.getUsername());
+
+            ResponseData<ResponseDataUser> response = new ResponseData<ResponseDataUser>();
+            response.setStatus("00");
+            response.setMessage("00");
+            response.getData().add(responseUser);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (Exception e) {
+           ResponseData<ResponseDataUser> response = new ResponseData<ResponseDataUser>();
+            response.setStatus("00");
+            response.setMessage("00");
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         }
-        return m_userService.create(m_user,null);
+
     }   
     
     @PutMapping
-    public M_User edit(@RequestBody M_User m_user){
-        return m_userService.update(m_user, m_user.getId());
+    public  ResponseEntity<ResponseData<ResponseDataUser>> edit(@RequestBody M_User m_user){
+        m_userService.update(m_user,m_user.getId());
+
+        ResponseDataUser responseUser = new ResponseDataUser(); 
+        responseUser.setId(m_user.getId());
+        responseUser.setIsActive(m_user.getIsActive());
+        responseUser.setRoleId(m_user.getRoleId());
+        responseUser.setUsername(m_user.getUsername());
+
+        ResponseData<ResponseDataUser> response = new ResponseData<ResponseDataUser>();
+        response.setStatus("00");
+        response.setMessage("00");
+        response.getData().add(responseUser);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping
-    public Iterable<M_User> findAll(){
-        return m_userService.getAll();
+    public ResponseEntity<ResponseData<Iterable<M_User>>> findAll(){
+        try {
+            ResponseData<Iterable<M_User>> response = new ResponseData<Iterable<M_User>>();
+            response.setStatus("00");
+            response.setMessage("00");
+            response.getData().add(m_userService.getAll());
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        
     }
 
     @DeleteMapping("/{id}")
     public void remove(@PathVariable("id") String id){
-        m_userService.delete(id);
+        try {
+             m_userService.delete(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+        
     }
 }

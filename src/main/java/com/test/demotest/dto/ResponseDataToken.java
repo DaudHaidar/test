@@ -1,6 +1,6 @@
 package com.test.demotest.dto;
 
-public class ResponseTokenDTO {
+public class ResponseDataToken {
     private String token;
 
     public String getToken() {

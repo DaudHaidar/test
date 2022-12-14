@@ -1,4 +1,4 @@
-package com.test.demotest.entitiy;
+package com.test.demotest.entity;
 
 import java.util.Collection;
 import java.util.HashSet;
