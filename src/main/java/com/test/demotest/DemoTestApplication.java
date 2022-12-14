@@ -16,7 +16,6 @@ import com.test.demotest.config.AuditorAwareImpl;
 
 @SpringBootApplication
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
-
 public class DemoTestApplication {
 
 	public static void main(String[] args) {

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.test.demotest.dto.ResponseData;
 import com.test.demotest.dto.ResponseDataUser;
-import com.test.demotest.entity.M_User;
-import com.test.demotest.service.M_UserService;
+import com.test.demotest.entity.aos.M_User;
+import com.test.demotest.service.aos.M_UserService;
 
 @RestController
 @RequestMapping("/user")

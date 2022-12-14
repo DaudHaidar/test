@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.test.demotest.Jwt.JwtFilter;
 import com.test.demotest.Jwt.JwtUtils;
-import com.test.demotest.repository.M_UserRepository;
+import com.test.demotest.repository.aos.M_UserRepository;
 
 
 @EnableWebSecurity

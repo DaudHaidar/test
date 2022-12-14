@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
 import com.test.demotest.config.SecurityConfig;
-import com.test.demotest.service.T_TokenService;
+import com.test.demotest.service.aos.T_TokenService;
 
 import io.jsonwebtoken.ExpiredJwtException;
 

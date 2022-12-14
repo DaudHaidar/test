@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "acsEntityManagerFactory",
         transactionManagerRef = "acsTransactionManager", basePackages = {
-        "com.test.demotest.repository"})
+        "com.test.demotest.repository.acs"})
 
 public class dbAcs {
     @Autowired
@@ -46,7 +46,7 @@ public class dbAcs {
 //        properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.dialect", "org.hibernate.dialect.SQLServer2008Dialect");
         return builder.dataSource(dataSource).properties(properties)
-                .packages("com.test.demotest.entitiy").persistenceUnit("acs").build();
+                .packages("com.test.demotest.entity.acs").persistenceUnit("acs").build();
     }
 
     @Bean(name = "acsTransactionManager")

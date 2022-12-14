@@ -1,6 +1,6 @@
 package com.test.demotest.dto;
 
-import com.test.demotest.entity.Role;
+import com.test.demotest.entity.aos.Role;
 
 public class ResponseDataUser {
     private String id;
