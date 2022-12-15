@@ -17,6 +17,7 @@ public class T_SubrogasiService {
     
 
     public T_Subrogasi save(T_Subrogasi subrogasi){
+        
         return subrogasiRepository.save(subrogasi);
     }
 

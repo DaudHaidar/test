@@ -3,6 +3,7 @@ package com.test.demotest.dto;
 import java.util.Date;
 
 public class RequestSubrogasi {
+    private String registrationId;
     private String noRekening;
     private String noPk;
     private String noKlaim;
@@ -16,6 +17,7 @@ public class RequestSubrogasi {
     private String kodeBank;
     private String kodeCabangAskrindo;
     private String jenisTransaksi;
+    
     
     public String getNoRekening() {
         return noRekening;
@@ -94,5 +96,11 @@ public class RequestSubrogasi {
     }
     public void setJenisTransaksi(String jenisTransaksi) {
         this.jenisTransaksi = jenisTransaksi;
+    }
+    public String getRegistrationId() {
+        return registrationId;
+    }
+    public void setRegistrationId(String registrationId) {
+        this.registrationId = registrationId;
     }
 }

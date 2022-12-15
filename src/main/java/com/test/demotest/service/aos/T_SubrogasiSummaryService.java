@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.test.demotest.entity.aos.T_Subrogasi_Summary;
-import com.test.demotest.repository.aos.T_SubrogasiRepository;
 import com.test.demotest.repository.aos.T_SubrogasiSummaryRepository;
 
 @Service

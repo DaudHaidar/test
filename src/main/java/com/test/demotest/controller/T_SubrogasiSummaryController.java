@@ -1,24 +1,27 @@
 package com.test.demotest.controller;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.demotest.dto.RequestSubrogasi;
 import com.test.demotest.dto.ResponseData;
-import com.test.demotest.entity.acs.V_CLM_INQUIRY_SUBROGATION_CREDIT;
+import com.test.demotest.entity.acs.CLM_INQUIRY_SUBROGATION_CREDIT;
+import com.test.demotest.entity.acs.CLM_PRELIMINARY;
 import com.test.demotest.entity.aos.T_Subrogasi;
 import com.test.demotest.entity.aos.T_Subrogasi_Summary;
-import com.test.demotest.service.acs.AcsService;
+import com.test.demotest.service.acs.CLM_INQUIRY_SUBROGRATIONService;
+import com.test.demotest.service.acs.CLM_PRELIMINARYService;
+import com.test.demotest.service.acs.CLM_SETTLEMENTService;
+import com.test.demotest.service.acs.CLM_SETTLEMENT_SUMMARYService;
 import com.test.demotest.service.aos.T_SubrogasiService;
 import com.test.demotest.service.aos.T_SubrogasiSummaryService;
 
@@ -30,14 +33,21 @@ public class T_SubrogasiSummaryController {
     @Autowired
     private T_SubrogasiService subrogasiService;
     @Autowired
-    private AcsService acsService;
+    private CLM_INQUIRY_SUBROGRATIONService acsService;
+    @Autowired
+    private CLM_PRELIMINARYService cPreliminaryService;
+    @Autowired
+    private CLM_SETTLEMENTService cSettlementService;
+    @Autowired
+    private CLM_SETTLEMENT_SUMMARYService cSettlementSummaryService;
 
     @PostMapping("/api/v1/shs/subro")
     public ResponseEntity<ResponseData<T_Subrogasi_Summary>> create(@RequestBody RequestSubrogasi request){
 
         try {
-            V_CLM_INQUIRY_SUBROGATION_CREDIT acs = acsService.getByNoRekening(request.getNoRekening());
-            System.out.println("CEK DATA ACS "+acs);
+            CLM_INQUIRY_SUBROGATION_CREDIT acs = acsService.getByNoRekening(request.getNoRekening());
+            CLM_PRELIMINARY cPreliminary = cPreliminaryService.findRegistrationId(request.getRegistrationId());
+
 
             if(acs != null){
 
@@ -95,8 +105,9 @@ public class T_SubrogasiSummaryController {
 
                             return ResponseEntity.status(HttpStatus.CREATED).body(response);
                         }
-                        throw new Exception("amt subrogation sudah lunas");
-                        // else untuk update ke data table entity lain                     
+                        // else untuk update ke data table entity lain  
+                        cSettlementSummaryService.create(cSettlementService.create(acs.getId(), "CLM_SETTLE_TYPE.SUBROGATION_13", cPreliminary.getPreliminaryId(), "CLM_COMPLETION_TYPE.TEKNIS", "CLM_OPSI_PEMBAYARAN.PENUH", null, null, 5, 12, 1, '0', 0), "IDR", Double.valueOf(1000000), Double.valueOf(1));
+                                           
                  }  
                     if(request.getCounterAngsuran()!=1 && subrogasiSummaryService.findByLineNo(request.getCounterAngsuran()-1) != null){
 
@@ -143,8 +154,16 @@ public class T_SubrogasiSummaryController {
 
                             return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
-                        }throw new Exception("amt subrogation sudah lunas");
+                        }                        
                         // else untuk update ke data table entity lain
+                        
+
+                        ResponseData<T_Subrogasi_Summary> response = new ResponseData<T_Subrogasi_Summary>();
+                            response.setStatus("00");
+                            response.setMessage("00");
+                            response.getData().add(cSettlementSummaryService.create(cSettlementService.create(acs.getId(), "CLM_SETTLE_TYPE.SUBROGATION_13", cPreliminary.getPreliminaryId(), "CLM_COMPLETION_TYPE.TEKNIS", "CLM_OPSI_PEMBAYARAN.PENUH", null, null, 5, 12, 1, '0', 0), "IDR", Double.valueOf(1000000), Double.valueOf(1)););
+
+                        return ResponseEntity.status(HttpStatus.CREATED).body(response);
                 }
 
  
@@ -154,7 +173,7 @@ public class T_SubrogasiSummaryController {
         } catch (Exception e) {
 
             ResponseData<T_Subrogasi_Summary> response = new ResponseData<T_Subrogasi_Summary>();
-            response.setStatus("00");
+            response.setStatus("01");
             response.setMessage(e.getMessage());
             System.out.println(
                 e.getMessage()            );
@@ -165,28 +184,53 @@ public class T_SubrogasiSummaryController {
 
     //ngetest get inquiry subrogration
     @GetMapping("/api/v1/shs/subro")
-    public ResponseEntity<ResponseData<V_CLM_INQUIRY_SUBROGATION_CREDIT>> getInfo(@RequestBody RequestSubrogasi request){
+    public ResponseEntity<ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT>> getInfo(@RequestBody RequestSubrogasi request){
 
-        V_CLM_INQUIRY_SUBROGATION_CREDIT acs =  acsService.getByNoRekening(request.getNoRekening());
+        CLM_INQUIRY_SUBROGATION_CREDIT acs =  acsService.getByNoRekening(request.getNoRekening());
             System.out.println(acs);
 
             if(acs != null){
-                        ResponseData<V_CLM_INQUIRY_SUBROGATION_CREDIT> response = new ResponseData<V_CLM_INQUIRY_SUBROGATION_CREDIT>();
+                        ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT> response = new ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT>();
                         response.setStatus("00");
                         response.setMessage("00");
                         response.getData().add(acs);
 
-                        return ResponseEntity.status(HttpStatus.CREATED).body(response);  
+                        return ResponseEntity.status(HttpStatus.OK).body(response);  
 
                     }
 
-                    ResponseData<V_CLM_INQUIRY_SUBROGATION_CREDIT> response = new ResponseData<V_CLM_INQUIRY_SUBROGATION_CREDIT>();
+                    ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT> response = new ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT>();
                     response.setStatus("00");
                     response.setMessage("00");
                     response.getData().add(acs);
 
-                    return ResponseEntity.status(HttpStatus.CREATED).body(response); 
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response); 
               
     }
+
+        //ngetest get lunas subrogartion 
+        @GetMapping("/api/v1/shs/subro/zero")
+        public ResponseEntity<ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>>> getLunas(Double sisa){
+            sisa= 0.0;
+            List<CLM_INQUIRY_SUBROGATION_CREDIT> acs =  acsService.getByZeroSubrogration(sisa);
+    
+                if(acs != null){
+                            ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>> response = new ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>>();
+                            response.setStatus("00");
+                            response.setMessage("00");
+                            response.getData().add(acs);
+    
+                            return ResponseEntity.status(HttpStatus.OK).body(response);  
+    
+                        }
+    
+                        ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>> response = new ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>>();
+                        response.setStatus("00");
+                        response.setMessage("00");
+                        response.getData().add(acs);
+    
+                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response); 
+                  
+        }
 }
 

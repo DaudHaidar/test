@@ -43,9 +43,9 @@ public class M_UserController {
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (Exception e) {
            ResponseData<ResponseDataUser> response = new ResponseData<ResponseDataUser>();
-            response.setStatus("00");
-            response.setMessage("00");
-            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            response.setStatus("01");
+            response.setMessage(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
 
     }   

@@ -6,33 +6,32 @@ import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 
 @Entity
-public class V_CLM_INQUIRY_SUBROGATION_CREDIT {
+public class CLM_INQUIRY_SUBROGATION_CREDIT {
     @Id
-    @Column(name = "REGISTRATION_ID", length = 16)
-    private String id = UUID.randomUUID().toString();
-    @Column(name = "ANALYSIS_ID", length = 16)
-    private String analysisId = UUID.randomUUID().toString();
-    @Column(name="PRODUCT_ID",length=4)
+    @Column(name = "REGISTRATION_ID", length = 16, nullable = false)
+    private String id ;
+    @Column(name = "ANALYSIS_ID", length = 16,nullable = false)
+    private String analysisId ;
+    @Column(name="PRODUCT_ID",length=4, nullable = false)
     private String productId;
     @Column(name="DEBITUR_ID",length = 16)
-    private String debiturId = UUID.randomUUID().toString();
-    @Column(name="COLLECTION_STATUS",length = 3)
+    private String debiturId ;
+    @Column(name="COLLECTION_STATUS",length = 3,nullable = false)
     private String collectionStatus;
     @Column(name = "PAYMENT_DATE")
     private Date paymentDate;
-    @Column(name="DEBITUR_NAME",length = 255)
+    @Column(name="DEBITUR_NAME",length = 255,nullable = false)
     private String debiturName;
     @Column(name="CREDIT_NO", length = 50)
     private String creditNo;
     @Column(name="SUB_PRODUCT_ID",length = 4)
     private String subProductId;
-    @Column(name = "PRODUCT_NAME", length = 3)
+    @Column(name = "PRODUCT_NAME", length = 3,nullable = false)
     private String productName;
-    @Column(name = "CLAIM_NO", length = 30)
+    @Column(name = "CLAIM_NO", length = 30,nullable = false)
     private String claimNo;
     @Column(name = "TXT_CUSTOMER_NAME",length = 2048)
     private String txtCustomerName;
@@ -42,11 +41,11 @@ public class V_CLM_INQUIRY_SUBROGATION_CREDIT {
     private Double amtNonCashCollateral;
     @Column(name = "AMT_CLAIM_PAYMENT",length = 9, scale = 2,precision = 19)
     private Double amtClaimPayment;
-    @Column(name = "AMT_RECOVERY", length = 9, scale = 2,precision = 18)
+    @Column(name = "AMT_RECOVERY", length = 9, scale = 2,precision = 18,nullable = false)
     private Double amtRecovery;
-    @Column(name = "AMT_SUBROGRATION",length = 9,scale = 2,precision = 18)
+    @Column(name = "AMT_SUBROGRATION",length = 9,scale = 2,precision = 18,nullable = false)
     private Double amtSubrogation;
-    @Column(name = "AMT_OS",length = 9,scale = 2,precision = 18)
+    @Column(name = "AMT_OS",length = 9,scale = 2,precision = 18,nullable = false)
     private Double amtOs;
     @Column(name = "POLICY_NO",length = 30)
     private String policyNo;
@@ -77,10 +76,10 @@ public class V_CLM_INQUIRY_SUBROGATION_CREDIT {
     @Column(name = "CREDIT_AGREEMENT_NO",length = 50)
     private String creditAgreementNo;
     @Column(name = "CUSTOMER_ID",length = 16)
-    private String customerId = UUID.randomUUID().toString();
+    private String customerId ;
     @Column(name = "STGR_DATE")
     private Date stgrDate;
-    @Column(name = "BRANCH_ID",length = 6)
+    @Column(name = "BRANCH_ID",length = 6,nullable = false)
     private String branchId;
     @Column(name = "TRANSFER_BRANCH_ID",length = 6)
     private String transferBranchId;

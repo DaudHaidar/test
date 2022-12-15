@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -104,6 +105,7 @@ public abstract class BaseEnity<U> {
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
+
 
     public U getModifiedBy() {
         return modifiedBy;
