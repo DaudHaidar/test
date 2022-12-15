@@ -40,4 +40,8 @@ public class T_SubrogasiSummaryService {
     public void deleteById(String id){
         subrogasiSummaryRepository.deleteById(id);
     }
+
+    public T_Subrogasi_Summary findByLineNo(Integer counterAngsuran){
+        return subrogasiSummaryRepository.findByLineNo(counterAngsuran);
+    }
 }
