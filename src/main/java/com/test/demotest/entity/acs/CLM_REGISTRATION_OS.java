@@ -3,10 +3,12 @@ package com.test.demotest.entity.acs;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.test.demotest.entity.aos.BaseEnity;
 
 @Entity
+@Table(name = "CLAIM.CLM_REGISTRATION_OS")
 public class CLM_REGISTRATION_OS extends BaseEnity<String> {
     
     @Id

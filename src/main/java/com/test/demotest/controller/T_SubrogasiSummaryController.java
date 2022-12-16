@@ -21,6 +21,7 @@ import com.test.demotest.dto.ResponseData;
 import com.test.demotest.entity.acs.CLM_INQUIRY_SUBROGATION_CREDIT;
 import com.test.demotest.entity.acs.CLM_PRELIMINARY;
 import com.test.demotest.entity.acs.CLM_RECOV_PAYMENT;
+import com.test.demotest.entity.acs.CLM_REGISTRATION_OS;
 import com.test.demotest.entity.acs.CLM_SETTLEMENT;
 import com.test.demotest.entity.acs.CLM_SETTLEMENT_SUMMARY;
 import com.test.demotest.entity.aos.T_Subrogasi;
@@ -28,6 +29,7 @@ import com.test.demotest.entity.aos.T_Subrogasi_Summary;
 import com.test.demotest.service.acs.CLM_INQUIRY_SUBROGRATIONService;
 import com.test.demotest.service.acs.CLM_PRELIMINARYService;
 import com.test.demotest.service.acs.CLM_RECOV_PAYMENTService;
+import com.test.demotest.service.acs.CLM_REGISTRATION_OSService;
 import com.test.demotest.service.acs.CLM_SETTLEMENTService;
 import com.test.demotest.service.acs.CLM_SETTLEMENT_SUMMARYService;
 import com.test.demotest.service.aos.T_SubrogasiService;
@@ -50,6 +52,8 @@ public class T_SubrogasiSummaryController {
     private CLM_SETTLEMENT_SUMMARYService cSettlementSummaryService;
     @Autowired
     private CLM_RECOV_PAYMENTService cRecovePaymentService;
+    @Autowired
+    private CLM_REGISTRATION_OSService cRegistrationOsService;
 
     @PostMapping("/api/v1/shs/subro")
     public ResponseEntity<ResponseData<Object>> create(@RequestBody RequestSubrogasi request){
@@ -71,7 +75,7 @@ public class T_SubrogasiSummaryController {
                 } 
         
                 if(lineNo == null&& request.getCounterAngsuran()==1){
-                    if(cInquiry.getAmtSubrogation() == 0){
+                    if(cInquiry.getAmtSubrogation() <= 0){
 
                         subrogasi.setNoRekening(request.getNoRekening());
                         subrogasi.setNomorPeserta(request.getNoRekening());
@@ -165,7 +169,7 @@ public class T_SubrogasiSummaryController {
 
                         CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create(cInquiry.getBranchId(), '0', cInquiry.getRegistrationId(), cInquiry.getAnalysisId(), cSettlement.getSettlementId(), 1, '0', cInquiry.getAmtSubrogation(), cInquiry.getAmtSubrogation()-request.getNilaiRecoveries(), '0', "RECOVERY_TYPE_KUR.REC");
 
-
+                        
                         ResponseData<Object> response = new ResponseData<Object>();
                         response.setStatus("00");
                         response.setMessage("00");
@@ -173,13 +177,16 @@ public class T_SubrogasiSummaryController {
                         response.getData().add(cSubrogasiSummary);
                         response.getData().add(cRecovPayment);
 
+                        CLM_REGISTRATION_OS cRegistrationOs =cRegistrationOsService.update(cInquiry.getRegistrationId(), cRecovPayment.getAmtShsAfter(), cInquiry.getAmtClaimPayment()-cRecovPayment.getAmtShsAfter());
+                        response.getData().add(cRegistrationOs);
+
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);
                     }            
                  }  
                 
                  if(request.getCounterAngsuran()!=1 && subrogasiSummaryService.findByLineNo(request.getCounterAngsuran()-1) != null){
 
-                        if(cInquiry.getAmtSubrogation() == 0){
+                        if(cInquiry.getAmtSubrogation() <= 0){
 
                             subrogasi.setNoRekening(request.getNoRekening());
                             subrogasi.setNomorPeserta(request.getNoRekening());
@@ -274,23 +281,34 @@ public class T_SubrogasiSummaryController {
                             CLM_SETTLEMENT_SUMMARY cSettlementSummary = cSettlementSummaryService.create( cSettlement,"IDR", Double.valueOf(1000000), Double.valueOf(1));
     
                             CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create(cInquiry.getBranchId(), '0', cInquiry.getRegistrationId(), cInquiry.getAnalysisId(), cSettlement.getSettlementId(), 1, '0', cInquiry.getAmtSubrogation(), cInquiry.getAmtSubrogation()-request.getNilaiRecoveries(), '0', "RECOVERY_TYPE_KUR.REC");
-    
-    
+                            
+
+
                             ResponseData<Object> response = new ResponseData<Object>();
                             response.setStatus("00");
                             response.setMessage("00");
                             response.getData().add(cSettlementSummary);
                             response.getData().add(cSubrogasiSummary);
                             response.getData().add(cRecovPayment);
+
+                            System.out.println("CEK Shs After recov :"+cRecovPayment.getAmtShsAfter());
+                            System.out.println("CEK getAmtClaimPayment "+(cInquiry.getAmtClaimPayment()));
+                            System.out.println("CEK recovPayment" + cRecovPayment.getAmtShsAfter());
+
+                            CLM_REGISTRATION_OS cRegistrationOs =cRegistrationOsService.update(cInquiry.getRegistrationId(), cRecovPayment.getAmtShsAfter(), cInquiry.getAmtClaimPayment()-cRecovPayment.getAmtShsAfter());
+
+                            response.getData().add(cRegistrationOs);
+                            System.out.println("cekRegistrationOs"+cRegistrationOs);
+                            System.out.println("AMT_SETTLED :" +cRegistrationOs.getAmtSettled());
+                            System.out.println("AMT_OS :"+cRegistrationOs.getAmtOs());
+
     
                             return ResponseEntity.status(HttpStatus.CREATED).body(response);
                         }
-                        
-                        
                 }
             }
             
-            throw new Exception("Data cInquiry tidak ditemukan");
+            throw new Exception("Data cInquiry tidak ditemukan atau value counter angsuran longkap");
             
         } catch (Exception e) {
 
@@ -303,85 +321,10 @@ public class T_SubrogasiSummaryController {
     }
 
 
-    //ngetest get inquiry subrogration by no rekeningnya
-    @GetMapping("/api/v1/shs/subro")
-    public ResponseEntity<ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT>> getInfo(@RequestBody RequestSubrogasi request){
+    
 
-        CLM_INQUIRY_SUBROGATION_CREDIT cInquiry =  cInquiryService.getByNoRekening(request.getNoRekening());
-            System.out.println(cInquiry);
 
-            if(cInquiry != null){
-                        ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT> response = new ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT>();
-                        response.setStatus("00");
-                        response.setMessage("00");
-                        response.getData().add(cInquiry);
 
-                        return ResponseEntity.status(HttpStatus.OK).body(response);  
-
-                    }
-
-            ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT> response = new ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT>();
-            response.setStatus("00");
-            response.setMessage("00");
-            response.getData().add(cInquiry);
-
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response); 
-              
-    }
-
-    //ngetest get yang sudah lunas subrogationnya
-
-    @GetMapping("/api/v1/shs/subro/zero")
-    public ResponseEntity<ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>>> getLunas(Double sisa){
-        sisa= 0.0;
-        List<CLM_INQUIRY_SUBROGATION_CREDIT> cInquiry =  cInquiryService.getByZeroSubrogration(sisa);
-
-            if(cInquiry != null){
-                        ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>> response = new ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>>();
-                        response.setStatus("00");
-                        response.setMessage("00");
-                        response.getData().add(cInquiry);
-                        return ResponseEntity.status(HttpStatus.OK).body(response);  
-                    }
-
-            ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>> response = new ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>>();
-            response.setStatus("00");
-            response.setMessage("00");
-            response.getData().add(cInquiry);
-
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response); 
-                
-    }
-
-    //cari berdasarkan yang createdBy di tabke CLM_SETTLEMENT_SUMMARY
-    @GetMapping("/api/v1/shs/subro/{createdBy}")
-    public ResponseEntity<ResponseData<List<CLM_SETTLEMENT_SUMMARY>>> findBCreated(@PathVariable("createdBy") String createdBy){
-        List<CLM_SETTLEMENT_SUMMARY> search = cSettlementSummaryService.getByCreatedBy(createdBy);
-        try {
-            ResponseData<List<CLM_SETTLEMENT_SUMMARY>> response = new ResponseData<List<CLM_SETTLEMENT_SUMMARY>>();
-            response.setMessage("00");
-            response.setStatus("00");
-            response.getData().add(search);
-            return ResponseEntity.status(HttpStatus.OK).body(response);
-        } catch (Exception e) {
-            ResponseData<List<CLM_SETTLEMENT_SUMMARY>> response = new ResponseData<List<CLM_SETTLEMENT_SUMMARY>>();
-            response.setMessage(e.getMessage());
-            response.setStatus("01");
-            return ResponseEntity.status(HttpStatus.OK).body(response);
-        }
-    }
-
-    //delete berdasarkan settleSummaryId di table claim summary settlement
-    @DeleteMapping("/api/v1/shs/subro/summary/{id}")
-    public void removeSettlementSummary(@PathVariable("id") String id){
-        cSettlementSummaryService.delete(id);
-    }
-
-    //delete berdasarkan SettleId di table claim settlement
-    @DeleteMapping("/api/v1/shs/subro/settle/{id}")
-    public void removeSettlement(@PathVariable("id") String id){
-        cSettlementService.delete(id);
-    }
 
 
 }

@@ -1,14 +1,14 @@
 package com.test.demotest.entity.acs;
 
 import java.util.Date;
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "")
 public class CLM_INQUIRY_SUBROGATION_CREDIT {
     @Id
     @Column(name = "REGISTRATION_ID", length = 16, nullable = false)

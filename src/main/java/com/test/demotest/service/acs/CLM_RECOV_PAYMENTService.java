@@ -1,5 +1,6 @@
 package com.test.demotest.service.acs;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -32,6 +33,14 @@ public class CLM_RECOV_PAYMENTService {
         createRecovPayment.setIsPaidOffReconciliation(isPaidOffReconciliation);
         createRecovPayment.setRecoveryType(recoveryType);
         return recovPaymentRepository.save(createRecovPayment);
+    }
+
+    public void delete(String id){
+        recovPaymentRepository.deleteById(id);
+    }
+
+    public List<CLM_RECOV_PAYMENT> findByCreatedBy(String createdBy){
+        return recovPaymentRepository.findByCreatedBy(createdBy);
     }
         
 }
