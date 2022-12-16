@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class CLM_INQUIRY_SUBROGATION_CREDIT {
     @Id
     @Column(name = "REGISTRATION_ID", length = 16, nullable = false)
-    private String id ;
+    private String registrationId ;
     @Column(name = "ANALYSIS_ID", length = 16,nullable = false)
     private String analysisId ;
     @Column(name="PRODUCT_ID",length=4, nullable = false)
@@ -91,11 +91,11 @@ public class CLM_INQUIRY_SUBROGATION_CREDIT {
     private String isEndorsed;
 
     
-    public String getId() {
-        return id;
+    public String getRegistrationId() {
+        return registrationId;
     }
-    public void setId(String id) {
-        this.id = id;
+    public void setRegistrationId(String registrationId) {
+        this.registrationId = registrationId;
     }
     public String getAnalysisId() {
         return analysisId;
@@ -301,6 +301,9 @@ public class CLM_INQUIRY_SUBROGATION_CREDIT {
     public void setIsEndorsed(String isEndorsed) {
         this.isEndorsed = isEndorsed;
     }
+
+    
+    
     
 
     

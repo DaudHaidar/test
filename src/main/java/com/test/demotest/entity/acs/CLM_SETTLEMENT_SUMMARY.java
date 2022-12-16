@@ -1,16 +1,19 @@
 package com.test.demotest.entity.acs;
 
 import java.util.Date;
+import java.util.stream.Stream;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.test.demotest.entity.aos.BaseEnity;
 
 @Entity
+@Table(name = "CLM_SETTLEMENT_SUMMARY")
 public class CLM_SETTLEMENT_SUMMARY extends BaseEnity<String>{
 
     @Id
@@ -43,6 +46,10 @@ public class CLM_SETTLEMENT_SUMMARY extends BaseEnity<String>{
     private String bankNoteNumber;
     @Column(name = "PAYMENT_DATE",length = 8,scale = 3,precision = 23)
     private Date paymentDate;
+
+
+
+    
     public String getSettleSummaryId() {
         return settleSummaryId;
     }
@@ -126,6 +133,9 @@ public class CLM_SETTLEMENT_SUMMARY extends BaseEnity<String>{
     }
     public void setPaymentDate(Date paymentDate) {
         this.paymentDate = paymentDate;
+    }
+    public Stream stream() {
+        return null;
     }
 
     

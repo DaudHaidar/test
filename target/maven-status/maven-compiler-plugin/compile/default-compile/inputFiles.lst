@@ -22,9 +22,12 @@
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/acs/CLM_REGISTRATION_OS.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/aos/T_SubrogasiService.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/acs/CLM_REGISTRATION_OSService.java
+/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/acs/CLM_PRELIMINARYRepository.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/Jwt/JwtUtils.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/controller/AuthController.java
+/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/acs/CLM_PRELIMINARYService.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/dto/ResponseDataUser.java
+/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/acs/CLM_PRELIMINARY.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/acs/CLM_INQUIRY_SUBROGATION_CREDIT.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/T_Subrogasi.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/acs/CLM_REGISTRATION_OSRepository.java
@@ -40,7 +43,6 @@
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/acs/CLM_RECOV_PAYMENTRepository.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/acs/CLM_INQUIRY_SUBROGRATIONService.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/BaseEnity.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/acs/CLM_PRELIMINARYID.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/config/SecurityConfig.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/dto/RequestLogin.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/T_Subrogasi_Summary.java

@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.test.demotest.entity.aos.BaseEnity;
 
 @Entity
+@Table(name = "CLM_SETTLEMENT")
 public class CLM_SETTLEMENT extends BaseEnity<String> {
     @Id
     @Column(name = "SETTLEMENT_ID",length = 16,nullable = false)
