@@ -1,5 +1,6 @@
 package com.test.demotest.service.acs;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -28,6 +29,14 @@ public class CLM_SETTLEMENT_SUMMARYService {
         createClmSummary.setRateIdr(rateIdr);
         
         return clmSettlementSummaryRepo.save(createClmSummary);
+    }
+
+    public List<CLM_SETTLEMENT_SUMMARY> getByCreatedBy(String createdBy){
+        return clmSettlementSummaryRepo.findByCreatedBy(createdBy);
+    }
+
+    public void delete(String settlementSummaryId){
+         clmSettlementSummaryRepo.deleteById(settlementSummaryId);
     }
 
 

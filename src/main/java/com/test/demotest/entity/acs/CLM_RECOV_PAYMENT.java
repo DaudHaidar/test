@@ -5,10 +5,12 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.test.demotest.entity.aos.BaseEnity;
 
 @Entity
+@Table(name = "CLAIM.CLM_RECOV_PAYMENT")
 public class CLM_RECOV_PAYMENT extends BaseEnity<String>{
 
     @Id
@@ -78,22 +80,20 @@ public class CLM_RECOV_PAYMENT extends BaseEnity<String>{
     private Character isPaidOffReconciliation;
     @Column(name = "PAIDOFFDATE_RECONCILIATION", length = 3,precision = 10)
     private Date paidOffDateReconciliation;
-    @Column(name = "TRX_FEE_RECONCILIATION",length = 16)
-    private String trxFeeReconciliation;
+    @Column(name = "TRX_FEE_RECONCILIATION_ID",length = 16)
+    private String trxFeeReconciliationId;
     @Column(name = "RECOV_PLAN_NO",length = 50)
     private String recovPlanNo;
     @Column(name = "RECOVERY_NO",length = 50)
     private String recoveryNo;
-    @Column(name = "RECOVERY_NO_ROOF",length = 50)
-    private String recoveryNoRoof;
+    @Column(name = "RECOVERY_NO_ROOT",length = 50)
+    private String recoveryNoRoot;
     @Column(name = "RECOVERY_TYPE",length = 30)
     private String recoveryType;
     @Column(name="PAYMENT_ID_ROOT",length = 16)
     private String paymentIdRoot;
     @Column(name = "SETTLEMENT_ID_NETTING",length = 16)
     private String settlementIdNetting;
-
-
     public String getPaymentId() {
         return paymentId;
     }
@@ -292,11 +292,11 @@ public class CLM_RECOV_PAYMENT extends BaseEnity<String>{
     public void setPaidOffDateReconciliation(Date paidOffDateReconciliation) {
         this.paidOffDateReconciliation = paidOffDateReconciliation;
     }
-    public String getTrxFeeReconciliation() {
-        return trxFeeReconciliation;
+    public String getTrxFeeReconciliationId() {
+        return trxFeeReconciliationId;
     }
-    public void setTrxFeeReconciliation(String trxFeeReconciliation) {
-        this.trxFeeReconciliation = trxFeeReconciliation;
+    public void setTrxFeeReconciliationId(String trxFeeReconciliationId) {
+        this.trxFeeReconciliationId = trxFeeReconciliationId;
     }
     public String getRecovPlanNo() {
         return recovPlanNo;
@@ -310,11 +310,11 @@ public class CLM_RECOV_PAYMENT extends BaseEnity<String>{
     public void setRecoveryNo(String recoveryNo) {
         this.recoveryNo = recoveryNo;
     }
-    public String getRecoveryNoRoof() {
-        return recoveryNoRoof;
+    public String getRecoveryNoRoot() {
+        return recoveryNoRoot;
     }
-    public void setRecoveryNoRoof(String recoveryNoRoof) {
-        this.recoveryNoRoof = recoveryNoRoof;
+    public void setRecoveryNoRoot(String recoveryNoRoot) {
+        this.recoveryNoRoot = recoveryNoRoot;
     }
     public String getRecoveryType() {
         return recoveryType;
@@ -335,9 +335,8 @@ public class CLM_RECOV_PAYMENT extends BaseEnity<String>{
         this.settlementIdNetting = settlementIdNetting;
     }
 
+
     
-
-
 
 
 }

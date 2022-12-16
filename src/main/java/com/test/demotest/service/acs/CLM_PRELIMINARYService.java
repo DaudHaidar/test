@@ -1,5 +1,7 @@
 package com.test.demotest.service.acs;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +9,7 @@ import com.test.demotest.entity.acs.CLM_PRELIMINARY;
 import com.test.demotest.repository.acs.CLM_PRELIMINARYRepository;
 
 @Service
+@Transactional
 public class CLM_PRELIMINARYService {
     
     @Autowired

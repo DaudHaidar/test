@@ -38,4 +38,8 @@ public class CLM_SETTLEMENTService{
         return clmSettlementRepository.save(createSettlement);
     }
 
+    public void delete(String settlementId){
+        clmSettlementRepository.deleteById(settlementId);
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.test.demotest.service.acs;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -7,8 +9,8 @@ import org.springframework.stereotype.Service;
 import com.test.demotest.entity.acs.CLM_REGISTRATION_OS;
 import com.test.demotest.repository.acs.CLM_REGISTRATION_OSRepository;
 
-
 @Service
+@Transactional
 public class CLM_REGISTRATION_OSService {
     @Autowired
     private CLM_REGISTRATION_OSRepository registrationOSRepository;

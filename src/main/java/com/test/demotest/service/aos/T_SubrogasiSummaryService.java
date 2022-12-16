@@ -14,7 +14,7 @@ public class T_SubrogasiSummaryService {
     @Autowired
     private T_SubrogasiSummaryRepository subrogasiSummaryRepository;
 
-    public T_Subrogasi_Summary save(T_Subrogasi_Summary subrogasiSummary){
+    public T_Subrogasi_Summary create(T_Subrogasi_Summary subrogasiSummary){
         return subrogasiSummaryRepository.save(subrogasiSummary);
     }
 
