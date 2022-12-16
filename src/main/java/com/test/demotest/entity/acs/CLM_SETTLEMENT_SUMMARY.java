@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import com.test.demotest.entity.aos.BaseEnity;
 
 @Entity
-@Table(name = "CLM_SETTLEMENT_SUMMARY")
+@Table(name = "CLAIM.CLM_SETTLEMENT_SUMMARY")
 public class CLM_SETTLEMENT_SUMMARY extends BaseEnity<String>{
 
     @Id
