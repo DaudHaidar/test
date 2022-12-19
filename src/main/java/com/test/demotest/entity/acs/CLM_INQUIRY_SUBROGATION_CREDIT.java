@@ -8,7 +8,6 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "")
 public class CLM_INQUIRY_SUBROGATION_CREDIT {
     @Id
     @Column(name = "REGISTRATION_ID", length = 16, nullable = false)

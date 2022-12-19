@@ -19,6 +19,7 @@ public class CLM_INQUIRY_SUBROGRATIONController {
 
     @Autowired
     private CLM_INQUIRY_SUBROGRATIONService cInquiryService;
+    
     //ngetest get inquiry subrogration by no rekeningnya
     @GetMapping("/api/v1/shs/subro")
     public ResponseEntity<ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT>> getInfo(@RequestBody RequestSubrogasi request){

@@ -46,6 +46,7 @@
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/aos/M_UserService.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/aos/T_SubrogasiSummaryRepository.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/T_Token.java
+/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/controller/acs/CLM_REGISTRATION_OSController.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/acs/CLM_RECOV_PAYMENTRepository.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/BaseEnity.java
 /home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/config/SecurityConfig.java

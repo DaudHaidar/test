@@ -23,6 +23,7 @@ public class CLM_REGISTRATION_OSService {
         }
 
         CLM_REGISTRATION_OS registrationOsUpdate = registrationOSRepository.findByRegistrationId(registrationId);
+        
         registrationOsUpdate.setRegistrationId(registrationId);
         registrationOsUpdate.setAmtOs(amtOs);
         registrationOsUpdate.setAmtSettled(amtSettled);

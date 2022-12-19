@@ -8,11 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.test.demotest.dto.ResponseData;
 import com.test.demotest.entity.acs.CLM_SETTLEMENT_SUMMARY;
 import com.test.demotest.service.acs.CLM_SETTLEMENT_SUMMARYService;
 
+@RestController
 public class CLM_SETTLEMENT_SUMMARYController {
 
         @Autowired

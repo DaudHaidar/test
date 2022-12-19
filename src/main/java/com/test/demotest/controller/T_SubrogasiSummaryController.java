@@ -4,14 +4,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,7 +58,7 @@ public class T_SubrogasiSummaryController {
             CLM_INQUIRY_SUBROGATION_CREDIT cInquiry = cInquiryService.getByNoRekening(request.getNoRekening());
             CLM_PRELIMINARY cPreliminary = cPreliminaryService.findRegistrationId(cInquiry.getRegistrationId());
 
-
+            System.out.println("CEK SISA SUBROGARATION "+cInquiry.getAmtSubrogation());
             if(cInquiry != null){
 
                 T_Subrogasi_Summary subrogasiSummary = new T_Subrogasi_Summary();
@@ -103,6 +99,7 @@ public class T_SubrogasiSummaryController {
                         subrogasiSummary.setNominalPajak(Double.valueOf(0));
                         subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
                         subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
+                        subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
                         subrogasiSummary.setTanggalJurnal(null);
                         subrogasiSummary.setNoJurnal(null);
                         subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
@@ -151,6 +148,7 @@ public class T_SubrogasiSummaryController {
                         subrogasiSummary.setNominalPajak(Double.valueOf(0));
                         subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
                         subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
+                        subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
                         subrogasiSummary.setTanggalJurnal(null);
                         subrogasiSummary.setNoJurnal(null);
                         subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
@@ -214,6 +212,7 @@ public class T_SubrogasiSummaryController {
                             subrogasiSummary.setNominalPajak(Double.valueOf(0));
                             subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
                             subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
+                            subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
                             subrogasiSummary.setTanggalJurnal(null);
                             subrogasiSummary.setNoJurnal(null);
                             subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
@@ -264,6 +263,7 @@ public class T_SubrogasiSummaryController {
                             subrogasiSummary.setNominalPajak(Double.valueOf(0));
                             subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
                             subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
+                            subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
                             subrogasiSummary.setTanggalJurnal(null);
                             subrogasiSummary.setNoJurnal(null);
                             subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
