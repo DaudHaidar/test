@@ -283,7 +283,6 @@ public class T_SubrogasiSummaryController {
                             CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create(cInquiry.getBranchId(), '0', cInquiry.getRegistrationId(), cInquiry.getAnalysisId(), cSettlement.getSettlementId(), 1, '0', cInquiry.getAmtSubrogation(), cInquiry.getAmtSubrogation()-request.getNilaiRecoveries(), '0', "RECOVERY_TYPE_KUR.REC");
                             
 
-
                             ResponseData<Object> response = new ResponseData<Object>();
                             response.setStatus("00");
                             response.setMessage("00");
