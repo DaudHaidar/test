@@ -32,9 +32,7 @@ public class CLM_INQUIRY_SUBROGRATIONController {
                         response.setStatus("00");
                         response.setMessage("00");
                         response.getData().add(cInquiry);
-
                         return ResponseEntity.status(HttpStatus.OK).body(response);  
-
                     }
 
             ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT> response = new ResponseData<CLM_INQUIRY_SUBROGATION_CREDIT>();

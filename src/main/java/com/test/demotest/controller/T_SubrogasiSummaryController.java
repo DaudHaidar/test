@@ -92,7 +92,7 @@ public class T_SubrogasiSummaryController {
                     subrogasiSummary.setKodeBank(request.getKodeBank());
                     subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
                     subrogasiSummary.setTglNotaKredit(new Date());
-                    subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+request.getNoRekening()+request.getCounterAngsuran());
+                    subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
                     subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
                     subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
                     subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
