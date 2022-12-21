@@ -135,7 +135,7 @@ public class T_SubrogasiSummaryController {
 
                     subrogasiSummary.setLineNo(request.getCounterAngsuran());
                     subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
-                    subrogasiSummary.setNominalSubrogasLebih(request.getNilaiRecoveries()-cInquiry.getAmtSubrogation());
+                    subrogasiSummary.setNominalSubrogasLebih(request.getNilaiRecoveries()-cInquiry.getAmtSubrogation()<0.0? 0.0 : request.getNilaiRecoveries()-cInquiry.getAmtSubrogation() );
                     subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
                     subrogasiSummary.setJenisTransaksi(request.getJenisTransaksi());
                     subrogasiSummary.setKodeBank(request.getKodeBank());

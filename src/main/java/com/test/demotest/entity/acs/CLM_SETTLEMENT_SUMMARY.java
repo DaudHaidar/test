@@ -134,11 +134,7 @@ public class CLM_SETTLEMENT_SUMMARY extends BaseEnity<String>{
     public void setPaymentDate(Date paymentDate) {
         this.paymentDate = paymentDate;
     }
-    public Stream stream() {
-        return null;
-    }
-
-    
+  
 
     
 }
