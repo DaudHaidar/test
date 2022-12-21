@@ -28,7 +28,7 @@ public class CLM_RECOV_PAYMENTService {
         createRecovPayment.setReverseMultiplier(reverseMultiplier);
         createRecovPayment.setIsNetting(isNetting);
         createRecovPayment.setAmtShsPrev(amtShsPrev);
-        createRecovPayment.setAmtShsAfter(amtShsAfter);
+        createRecovPayment.setAmtShsAfter(amtShsAfter<0.0? 0.0:amtShsAfter);
         createRecovPayment.setBranchId(branchId);
         createRecovPayment.setIsPaidOffReconciliation(isPaidOffReconciliation);
         createRecovPayment.setRecoveryType(recoveryType);

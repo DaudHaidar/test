@@ -40,7 +40,7 @@ public class CLM_REGISTRATION_OSService {
         System.out.println("registrationOsFilter"+ registrationOsFilter);
       
         registrationOsFilter.setRegistrationId(registrationId);
-        registrationOsFilter.setAmtOs(amtOs);
+        registrationOsFilter.setAmtOs(amtOs<0.0? 0.0:amtOs);
         registrationOsFilter.setAmtSettled(amtSettled);
 
         return registrationOSRepository.save(registrationOsFilter);

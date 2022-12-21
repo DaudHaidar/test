@@ -50,6 +50,7 @@ public class CLM_INQUIRY_SUBROGATION_CREDIT {
     private String policyNo;
     @Column(name = "AGE_CLAIM",length = 4,precision = 10)
     private Integer ageClaim;
+    
     public Double getAmtSubrogation() {
         return amtSubrogation;
     }

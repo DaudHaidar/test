@@ -180,7 +180,7 @@ public class T_SubrogasiSummaryController {
 
                     return ResponseEntity.status(HttpStatus.CREATED).body(response);
                 }            
-                }  
+            }  
             
                 if(request.getCounterAngsuran()!=1 && subrogasiSummaryService.findByLineNo(request.getCounterAngsuran()-1) != null){
 

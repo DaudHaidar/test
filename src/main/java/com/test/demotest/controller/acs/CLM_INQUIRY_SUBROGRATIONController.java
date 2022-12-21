@@ -69,10 +69,10 @@ public class CLM_INQUIRY_SUBROGRATIONController {
                 
     }
 
-    //ngetest get yang sudah lunas subrogationnya
+    //ngetest get yang belum  lunas subrogationnya
     @GetMapping("/api/v1/shs/subro/notZero")
     public ResponseEntity<ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>>> getBelomLunas(Double sisa){
-        sisa=1.0;
+        sisa=1000000.0;
         List<CLM_INQUIRY_SUBROGATION_CREDIT> cInquiry =  cInquiryService.getByZeroSubrogration(sisa);
 
             if(cInquiry != null && sisa>0){
