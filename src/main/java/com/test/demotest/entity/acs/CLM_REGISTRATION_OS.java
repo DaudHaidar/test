@@ -95,6 +95,12 @@ public class CLM_REGISTRATION_OS extends BaseEnity<String> {
     public void setAmtSettled(Double amtSettled) {
         this.amtSettled = amtSettled;
     }
+    
+    @Override
+    public String toString(){
+
+        return "ProductInfo [REG_OS_ID=" + regOsId + ", CURRENCY_CODE=" + currencyCode + ", REGISTRATION_ID=" + registrationId + ", CLM_OS_TYPE=" + clmOstype +", CLM_STATUS=" + clmStatus + ", AMT_OS=" + amtOs + ", AMT_LOSS="+ amtLoss + ", AMT_CLOSED=" + amtClosed + ", AMT_SETTLED="+ amtSettled + ", IDR_RATE ="+ idrRate + "]";
+    }
 
     
 }

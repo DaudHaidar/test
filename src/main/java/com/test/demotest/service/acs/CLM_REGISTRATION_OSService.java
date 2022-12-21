@@ -27,27 +27,23 @@ public class CLM_REGISTRATION_OSService {
 
         // CLM_REGISTRATION_OS registrationOsUpdate = registrationOSRepository.findByRegistrationId(registrationId);
 
-        List<CLM_REGISTRATION_OS> registrationOsList = new ArrayList<CLM_REGISTRATION_OS>(findByRegistrationId(registrationId));
+        List<CLM_REGISTRATION_OS> registrationOsList = new ArrayList<>(findByRegistrationId(registrationId));
 
         System.out.println("registrationOsList : "+ registrationOsList);
         System.out.println("clmostype :"+registrationOsList.get(0).getClmOstype() );
 
-        List<CLM_REGISTRATION_OS> registrationOsFilter = findByRegistrationId(registrationId).stream().filter(clmRegist->{
-            System.out.println("CLM REGIST  :" + clmRegist.getClmOstype());
-            return clmRegist.getClmOstype()=="SUBROGATION";
-        }).collect(Collectors.toList());
+        CLM_REGISTRATION_OS registrationOsFilter = registrationOsList.stream().filter(( CLM_REGISTRATION_OS clmRegist)->{
+            System.out.println("CLM REGIST  :" + clmRegist);
+            return clmRegist.getClmOstype().equals("SUBROGATION");
+        }).findFirst().get();
 
         System.out.println("registrationOsFilter"+ registrationOsFilter);
+      
+        registrationOsFilter.setRegistrationId(registrationId);
+        registrationOsFilter.setAmtOs(amtOs);
+        registrationOsFilter.setAmtSettled(amtSettled);
 
-        CLM_REGISTRATION_OS getregistrationOs = registrationOsFilter.get(0);
-        System.out.println("getregistrationOs  : "+getregistrationOs);
-        
-        getregistrationOs.setRegistrationId(registrationId);
-        getregistrationOs.setAmtOs(amtOs);
-        getregistrationOs.setAmtSettled(amtSettled);
-
-
-        return registrationOSRepository.save(getregistrationOs);
+        return registrationOSRepository.save(registrationOsFilter);
     }
 
     public List<CLM_REGISTRATION_OS> findByRegistrationId(String registrationId){

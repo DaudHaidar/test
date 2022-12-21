@@ -15,9 +15,9 @@ public class CLM_REGISTRATION_OSController {
     @Autowired
     private CLM_REGISTRATION_OSService cRegistrationService;
 
-    // @GetMapping("/api/v1/shs/subro/registrationOs/{registrationId}")
-    // public List<CLM_REGISTRATION_OS>findByRegistration(@PathVariable("registrationId") String registrationId){
-    //     return cRegistrationService.findByRegistrationId(registrationId);
-    // }
+    @GetMapping("/api/v1/shs/subro/registrationOs/{registrationId}")
+    public List<CLM_REGISTRATION_OS>findByRegistration(@PathVariable("registrationId") String registrationId){
+        return cRegistrationService.findByRegistrationId(registrationId);
+    }
     
 }
