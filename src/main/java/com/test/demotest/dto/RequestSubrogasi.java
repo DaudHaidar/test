@@ -103,4 +103,24 @@ public class RequestSubrogasi {
     public void setRegistrationId(String registrationId) {
         this.registrationId = registrationId;
     }
+
+    @Override
+    public String toString(){
+        return "{" +
+                "noRekening='" + noRekening + '\'' +
+                ", noPk='" + noPk + '\'' +
+                ", noKlaim='" + noKlaim + '\'' +
+                ", noGiro='" + noGiro + '\'' +
+                ", noTransaksi='" + noTransaksi + '\'' +
+                ", nilaiRecoveries ='" + nilaiRecoveries + '\'' +
+                ", covRatio='" + covRatio + '\'' +
+                ", tglBayar='" + tglBayar + '\'' +
+                ", remark='" + remark + '\'' +
+                ", counterAngsuran='" + counterAngsuran + '\'' +
+                ", kodeBank='" + kodeBank + '\'' +
+                ", kodeCabangAskrindo='" + kodeCabangAskrindo + '\'' +
+                ", jenisTransaksi='" + jenisTransaksi + '\'' +
+                '}';
+
+    }
 }

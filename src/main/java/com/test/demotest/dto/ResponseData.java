@@ -28,6 +28,14 @@ public class ResponseData<T> {
         this.data = data;
     }
 
+    @Override
+    public String toString(){
+        return "{" +
+                "status='" + status + '\'' +
+                ", message='" + message + '\'' +
+                ", data='" + data + '\'' +
+                '}';
+    }
 
     
 }

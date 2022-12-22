@@ -141,7 +141,7 @@ public class T_SubrogasiSummaryController {
                     subrogasiSummary.setKodeBank(request.getKodeBank());
                     subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
                     subrogasiSummary.setTglNotaKredit(new Date());
-                    subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+request.getNoRekening()+request.getCounterAngsuran());
+                    subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
                     subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
                     subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
                     subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
@@ -205,7 +205,7 @@ public class T_SubrogasiSummaryController {
                         subrogasiSummary.setKodeBank(request.getKodeBank());
                         subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
                         subrogasiSummary.setTglNotaKredit(new Date());
-                        subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+request.getNoRekening()+request.getCounterAngsuran());
+                        subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
                         subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
                         subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
                         subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
@@ -222,10 +222,12 @@ public class T_SubrogasiSummaryController {
                         subrogasiSummary.setIsNetting((byte) 0);
                         subrogasiSummary.setStatus("0");
 
+
                         ResponseData<Object> response = new ResponseData<Object>();
                         response.setStatus("00");
                         response.setMessage("00");
                         response.getData().add(subrogasiSummaryService.create(subrogasiSummary));
+
 
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
@@ -256,7 +258,7 @@ public class T_SubrogasiSummaryController {
                         subrogasiSummary.setKodeBank(request.getKodeBank());
                         subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
                         subrogasiSummary.setTglNotaKredit(new Date());
-                        subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+request.getNoRekening()+request.getCounterAngsuran());
+                        subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
                         subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
                         subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
                         subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
@@ -302,6 +304,7 @@ public class T_SubrogasiSummaryController {
                         System.out.println("AMT_OS :"+cRegistrationOs.getAmtOs());
 
 
+
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);
                     }
             }
@@ -318,13 +321,6 @@ public class T_SubrogasiSummaryController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);  
         }        
     }
-
-
-    
-
-
-
-
 
 }
 
