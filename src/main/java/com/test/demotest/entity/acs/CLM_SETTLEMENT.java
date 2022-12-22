@@ -47,7 +47,7 @@ public class CLM_SETTLEMENT extends BaseEnity<String> {
     private Character isNoteGenerated;
     @Column(name = "TXT_DESCRIPTION",length = 200)
     private String txtDescription;
-    @Column(name = "VERSION",precision = 10,columnDefinition = "INT(4) NOT NULL UNIQUE KEY auto_increment")
+    @Column(name = "VERSION",precision = 10)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer version;
     @Column(name ="IS_NONPROP_TREATY",length = 1 )

@@ -64,8 +64,8 @@ public class T_SubrogasiSummaryController {
         System.out.println("CEK SISA SUBROGARATION "+cInquiry.getAmtSubrogation());
         if(cInquiry != null){
 
-            T_Subrogasi_Summary subrogasiSummary = new T_Subrogasi_Summary();
-            T_Subrogasi subrogasi= new T_Subrogasi();
+            // T_Subrogasi_Summary subrogasiSummary = new T_Subrogasi_Summary();
+            // T_Subrogasi subrogasi= new T_Subrogasi();
             T_Subrogasi_Summary lineNo = subrogasiSummaryService.findByLineNo(request.getCounterAngsuran());
 
             if(lineNo != null){
@@ -74,52 +74,57 @@ public class T_SubrogasiSummaryController {
             } 
     
             if(lineNo == null&& request.getCounterAngsuran()==1){
-                if(cInquiry.getAmtSubrogation() <= 0){
+                if(cInquiry.getAmtSubrogation() <= 0){     
 
-                    subrogasi.setNoRekening(request.getNoRekening());
-                    subrogasi.setNomorPeserta(request.getNoRekening());
-                    subrogasi.setNominalClaim(request.getNilaiRecoveries());
-                    subrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
-                    subrogasi.setSisaKewajibanSubrogasi(cInquiry.getAmtSubrogation());
-                    subrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
-                    subrogasi.setPresentaseCollectingFee(Double.valueOf(0));
-                    subrogasi.setPresentasePajak(Double.valueOf(0));
-                    subrogasi.setIdKlaim(UUID.randomUUID().toString());
-                    subrogasi.setStatus("0");
+                    T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry);
 
-                    subrogasiSummary.setLineNo(request.getCounterAngsuran());
-                    subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
-                    subrogasiSummary.setNominalSubrogasLebih(request.getNilaiRecoveries()-cInquiry.getAmtSubrogation());
-                    subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
-                    subrogasiSummary.setJenisTransaksi(request.getJenisTransaksi());
-                    subrogasiSummary.setKodeBank(request.getKodeBank());
-                    subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
-                    subrogasiSummary.setTglNotaKredit(new Date());
-                    subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
-                    subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
-                    subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
-                    subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
-                    subrogasiSummary.setNominalPajak(Double.valueOf(0));
-                    subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
-                    subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
-                    subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
-                    subrogasiSummary.setTanggalJurnal(null);
-                    subrogasiSummary.setNoJurnal(null);
-                    subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
-                    subrogasiSummary.setCollectingAgent(null);
-                    subrogasiSummary.setNoNotaKredit(null);
-                    subrogasiSummary.setmRekeningGiro(null);
-                    subrogasiSummary.setIsNetting((byte) 0);
-                    subrogasiSummary.setStatus("0");
+                    T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi);
 
                     ResponseData<Object> response = new ResponseData<Object>();
                     response.setStatus("00");
                     response.setMessage("00");
-                    response.getData().add(subrogasiSummaryService.create(subrogasiSummary));
+                    response.getData().add(subrogasiSummary);
 
                     logsService.create(request.getNoRekening(), "h2h-subro", response.toString(), response.getStatus(), request.toString(), response.getMessage());
 
                     return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+                    // subrogasi.setNoRekening(request.getNoRekening());
+                    // subrogasi.setNomorPeserta(request.getNoRekening());
+                    // subrogasi.setNominalClaim(request.getNilaiRecoveries());
+                    // subrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
+                    // subrogasi.setSisaKewajibanSubrogasi(cInquiry.getAmtSubrogation());
+                    // subrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
+                    // subrogasi.setPresentaseCollectingFee(Double.valueOf(0));
+                    // subrogasi.setPresentasePajak(Double.valueOf(0));
+                    // subrogasi.setIdKlaim(UUID.randomUUID().toString());
+                    // subrogasi.setStatus("0");
+   
+                    // subrogasiSummary.setLineNo(request.getCounterAngsuran());
+                    // subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
+                    // subrogasiSummary.setNominalSubrogasLebih(request.getNilaiRecoveries()-cInquiry.getAmtSubrogation());
+                    // subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
+                    // subrogasiSummary.setJenisTransaksi(request.getJenisTransaksi());
+                    // subrogasiSummary.setKodeBank(request.getKodeBank());
+                    // subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
+                    // subrogasiSummary.setTglNotaKredit(new Date());
+                    // subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
+                    // subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
+                    // subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
+                    // subrogasiSummary.setNominalPajak(Double.valueOf(0));
+                    // subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
+                    // subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
+                    // subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
+                    // subrogasiSummary.setTanggalJurnal(null);
+                    // subrogasiSummary.setNoJurnal(null);
+                    // subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
+                    // subrogasiSummary.setCollectingAgent(null);
+                    // subrogasiSummary.setNoNotaKredit(null);
+                    // subrogasiSummary.setmRekeningGiro(null);
+                    // subrogasiSummary.setIsNetting((byte) 0);
+                    // subrogasiSummary.setStatus("0");
+                    // subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
+
                 }
                 else if(cInquiry.getAmtSubrogation() >0){
                     
@@ -127,44 +132,82 @@ public class T_SubrogasiSummaryController {
                     System.out.println("cInquiry REGISTRATION ID (cInquiry.getId()): "+ cInquiry.getRegistrationId());
                     System.out.println("PRELIMINARY_ID (cPreliminary.getPreliminaryId()) : "+cPreliminary.getPreliminaryId());
 
-                    subrogasi.setNoRekening(request.getNoRekening());
-                    subrogasi.setNomorPeserta(request.getNoRekening());
-                    subrogasi.setNominalClaim(request.getNilaiRecoveries());
-                    subrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
-                    subrogasi.setSisaKewajibanSubrogasi(cInquiry.getAmtSubrogation());
-                    subrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
-                    subrogasi.setPresentaseCollectingFee(Double.valueOf(0));
-                    subrogasi.setPresentasePajak(Double.valueOf(0));
-                    subrogasi.setIdKlaim(UUID.randomUUID().toString());
-                    subrogasi.setStatus("0");
+                    String noRekening = request.getNoRekening();
+                    String nomorPeserta = request.getNoRekening();
+                    Double nominalClaim = request.getNilaiRecoveries();
+                    Double akumulasiSubrogasi = cInquiry.getAmtRecovery()+request.getNilaiRecoveries();
+                    Double sisaKewajibanSubrogasi = cInquiry.getAmtSubrogation();
+                    Double presentasiCoverage = Double.valueOf(request.getCovRatio());
+                    Double presentaseCollectingFee = Double.valueOf(0);
+                    Double presentasePajak = Double.valueOf(0);
+                    String idKlaim = UUID.randomUUID().toString();
 
-                    subrogasiSummary.setLineNo(request.getCounterAngsuran());
-                    subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
-                    subrogasiSummary.setNominalSubrogasLebih(request.getNilaiRecoveries()-cInquiry.getAmtSubrogation()<0.0? 0.0 : request.getNilaiRecoveries()-cInquiry.getAmtSubrogation() );
-                    subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
-                    subrogasiSummary.setJenisTransaksi(request.getJenisTransaksi());
-                    subrogasiSummary.setKodeBank(request.getKodeBank());
-                    subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
-                    subrogasiSummary.setTglNotaKredit(new Date());
-                    subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
-                    subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
-                    subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
-                    subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
-                    subrogasiSummary.setNominalPajak(Double.valueOf(0));
-                    subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
-                    subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
-                    subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
-                    subrogasiSummary.setTanggalJurnal(null);
-                    subrogasiSummary.setNoJurnal(null);
-                    subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
-                    subrogasiSummary.setCollectingAgent(null);
-                    subrogasiSummary.setNoNotaKredit(null);
-                    subrogasiSummary.setmRekeningGiro(null);
-                    subrogasiSummary.setIsNetting((byte) 0);
-                    subrogasiSummary.setStatus("0");
+                    T_Subrogasi subrogasi = subrogasiService.save(noRekening, nomorPeserta, nominalClaim, akumulasiSubrogasi, sisaKewajibanSubrogasi, presentasiCoverage, presentaseCollectingFee, presentasePajak, idKlaim, idKlaim);
+
+                    Integer lineNomor = request.getCounterAngsuran();
+                    Double nominalSubrogasiLebih = request.getNilaiRecoveries()-cInquiry.getAmtSubrogation();
+                    Double nominalSUbrogasiPokok = request.getNilaiRecoveries();
+                    String jenisTransaksi = request.getJenisTransaksi();
+                    String kodeBank = request.getKodeBank();
+                    String kodeCabangAskrindo = request.getKodeCabangAskrindo();
+                    Date tglNotaKredit = new Date();
+                    T_Subrogasi subrogasiId =  subrogasi;
+                    Double nominalSubrogasiBunga = Double.valueOf(0);
+                    Double nominalSubrogasiDenda = Double.valueOf(0);
+                    Double nominalPajak = Double.valueOf(0);
+                    Double nominalFeeGross = Double.valueOf(0);
+                    Double nominalFeeNet = Double.valueOf(0);
+                    Double nominalSubrogasiTotal = request.getNilaiRecoveries();
+                    Date tangalJurnal = null;
+                    String noJurnal = null;
+                    Double biayaRekonsiliasi = Double.valueOf(0);
+                    String collectingAgent = null;
+                    String noNotaKredit = null;
+                    String mRekeningGiro = null;
+                    Byte isNetting = 0;
+                    String status = "0";
+                    String bpUnitCode = cInquiry.getBpUnitCode();
+
+                    T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(lineNomor, nominalSUbrogasiPokok, nominalSubrogasiLebih<0.0? 0.0 :nominalSubrogasiLebih, jenisTransaksi, kodeBank, kodeCabangAskrindo, tglNotaKredit, subrogasiId, nominalSubrogasiBunga, nominalSubrogasiDenda, nominalPajak, nominalFeeGross, nominalFeeNet, nominalSubrogasiTotal, tangalJurnal, noJurnal, biayaRekonsiliasi, collectingAgent, noNotaKredit, mRekeningGiro, isNetting, status, bpUnitCode, noRekening);
+
+                    // subrogasi.setNoRekening(request.getNoRekening());
+                    // subrogasi.setNomorPeserta(request.getNoRekening());
+                    // subrogasi.setNominalClaim(request.getNilaiRecoveries());
+                    // subrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
+                    // subrogasi.setSisaKewajibanSubrogasi(cInquiry.getAmtSubrogation());
+                    // subrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
+                    // subrogasi.setPresentaseCollectingFee(Double.valueOf(0));
+                    // subrogasi.setPresentasePajak(Double.valueOf(0));
+                    // subrogasi.setIdKlaim(UUID.randomUUID().toString());
+                    // subrogasi.setStatus("0");
+
+                    // subrogasiSummary.setLineNo(request.getCounterAngsuran());
+                    // subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
+                    // subrogasiSummary.setNominalSubrogasLebih(request.getNilaiRecoveries()-cInquiry.getAmtSubrogation()<0.0? 0.0 : request.getNilaiRecoveries()-cInquiry.getAmtSubrogation() );
+                    // subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
+                    // subrogasiSummary.setJenisTransaksi(request.getJenisTransaksi());
+                    // subrogasiSummary.setKodeBank(request.getKodeBank());
+                    // subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
+                    // subrogasiSummary.setTglNotaKredit(new Date());
+                    // subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
+                    // subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
+                    // subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
+                    // subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
+                    // subrogasiSummary.setNominalPajak(Double.valueOf(0));
+                    // subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
+                    // subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
+                    // subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
+                    // subrogasiSummary.setTanggalJurnal(null);
+                    // subrogasiSummary.setNoJurnal(null);
+                    // subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
+                    // subrogasiSummary.setCollectingAgent(null);
+                    // subrogasiSummary.setNoNotaKredit(null);
+                    // subrogasiSummary.setmRekeningGiro(null);
+                    // subrogasiSummary.setIsNetting((byte) 0);
+                    // subrogasiSummary.setStatus("0");
                     
 
-                    T_Subrogasi_Summary cSubrogasiSummary = subrogasiSummaryService.create(subrogasiSummary);
+                    // T_Subrogasi_Summary cSubrogasiSummary = subrogasiSummaryService.create(subrogasiSummary);
 
                     CLM_SETTLEMENT cSettlement = cSettlementService.create(cInquiry.getRegistrationId(), "CLM_SETTLE_TYPE.SUBROGATION_13", cPreliminary.getPreliminaryId(), "CLM_COMPLETION_TYPE.TEKNIS", "CLM_OPSI_PEMBAYARAN.PENUH", null, null, 5, 12, 1, '0', 0);
 
@@ -177,7 +220,7 @@ public class T_SubrogasiSummaryController {
                     response.setStatus("00");
                     response.setMessage("00");
                     response.getData().add(cSettlementSummary);
-                    response.getData().add(cSubrogasiSummary);
+                    response.getData().add(subrogasiSummary);
                     response.getData().add(cRecovPayment);
 
                     CLM_REGISTRATION_OS cRegistrationOs =cRegistrationOsService.update(cInquiry.getRegistrationId(), cRecovPayment.getAmtShsAfter(), cInquiry.getAmtClaimPayment()-cRecovPayment.getAmtShsAfter());
@@ -193,52 +236,88 @@ public class T_SubrogasiSummaryController {
 
                     if(cInquiry.getAmtSubrogation() <= 0){
 
-                        subrogasi.setNoRekening(request.getNoRekening());
-                        subrogasi.setNomorPeserta(request.getNoRekening());
-                        subrogasi.setNominalClaim(request.getNilaiRecoveries());
-                        subrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
-                        subrogasi.setSisaKewajibanSubrogasi(cInquiry.getAmtSubrogation());
-                        subrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
-                        subrogasi.setPresentaseCollectingFee(Double.valueOf(0));
-                        subrogasi.setPresentasePajak(Double.valueOf(0));
-                        subrogasi.setIdKlaim(UUID.randomUUID().toString());
-                        subrogasi.setStatus("0");
+                        String noRekening = request.getNoRekening();
+                        String nomorPeserta = request.getNoRekening();
+                        Double nominalClaim = request.getNilaiRecoveries();
+                        Double akumulasiSubrogasi = cInquiry.getAmtRecovery()+request.getNilaiRecoveries();
+                        Double sisaKewajibanSubrogasi = cInquiry.getAmtSubrogation();
+                        Double presentasiCoverage = Double.valueOf(request.getCovRatio());
+                        Double presentaseCollectingFee = Double.valueOf(0);
+                        Double presentasePajak = Double.valueOf(0);
+                        String idKlaim = UUID.randomUUID().toString();
 
-                        subrogasiSummary.setLineNo(request.getCounterAngsuran());
-                        subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
-                        subrogasiSummary.setNominalSubrogasLebih(request.getNilaiRecoveries()-cInquiry.getAmtSubrogation());
-                        subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
-                        subrogasiSummary.setJenisTransaksi(request.getJenisTransaksi());
-                        subrogasiSummary.setKodeBank(request.getKodeBank());
-                        subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
-                        subrogasiSummary.setTglNotaKredit(new Date());
-                        subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
-                        subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
-                        subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
-                        subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
-                        subrogasiSummary.setNominalPajak(Double.valueOf(0));
-                        subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
-                        subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
-                        subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
-                        subrogasiSummary.setTanggalJurnal(null);
-                        subrogasiSummary.setNoJurnal(null);
-                        subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
-                        subrogasiSummary.setCollectingAgent(null);
-                        subrogasiSummary.setNoNotaKredit(null);
-                        subrogasiSummary.setmRekeningGiro(null);
-                        subrogasiSummary.setIsNetting((byte) 0);
-                        subrogasiSummary.setStatus("0");
+                        T_Subrogasi subrogasi = subrogasiService.save(noRekening, nomorPeserta, nominalClaim, akumulasiSubrogasi, sisaKewajibanSubrogasi, presentasiCoverage, presentaseCollectingFee, presentasePajak, idKlaim, idKlaim);
 
+                        Integer lineNomor = request.getCounterAngsuran();
+                        Double nominalSubrogasiLebih = request.getNilaiRecoveries()-cInquiry.getAmtSubrogation();
+                        Double nominalSUbrogasiPokok = request.getNilaiRecoveries();
+                        String jenisTransaksi = request.getJenisTransaksi();
+                        String kodeBank = request.getKodeBank();
+                        String kodeCabangAskrindo = request.getKodeCabangAskrindo();
+                        Date tglNotaKredit = new Date();
+                        T_Subrogasi subrogasiId =  subrogasi;
+                        Double nominalSubrogasiBunga = Double.valueOf(0);
+                        Double nominalSubrogasiDenda = Double.valueOf(0);
+                        Double nominalPajak = Double.valueOf(0);
+                        Double nominalFeeGross = Double.valueOf(0);
+                        Double nominalFeeNet = Double.valueOf(0);
+                        Double nominalSubrogasiTotal = request.getNilaiRecoveries();
+                        Date tangalJurnal = null;
+                        String noJurnal = null;
+                        Double biayaRekonsiliasi = Double.valueOf(0);
+                        String collectingAgent = null;
+                        String noNotaKredit = null;
+                        String mRekeningGiro = null;
+                        Byte isNetting = 0;
+                        String status = "0";
+                        String bpUnitCode = cInquiry.getBpUnitCode();
+
+                        T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(lineNomor, nominalSUbrogasiPokok, nominalSubrogasiLebih, jenisTransaksi, kodeBank, kodeCabangAskrindo, tglNotaKredit, subrogasiId, nominalSubrogasiBunga, nominalSubrogasiDenda, nominalPajak, nominalFeeGross, nominalFeeNet, nominalSubrogasiTotal, tangalJurnal, noJurnal, biayaRekonsiliasi, collectingAgent, noNotaKredit, mRekeningGiro, isNetting, status, bpUnitCode, noRekening);
 
                         ResponseData<Object> response = new ResponseData<Object>();
                         response.setStatus("00");
                         response.setMessage("00");
-                        response.getData().add(subrogasiSummaryService.create(subrogasiSummary));
+                        response.getData().add(subrogasiSummary);
 
                         logsService.create(request.getNoRekening(), "h2h-subro", response.toString(), response.getStatus(), request.toString(), response.getMessage());
 
-
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+                        // subrogasi.setNoRekening(request.getNoRekening());
+                        // subrogasi.setNomorPeserta(request.getNoRekening());
+                        // subrogasi.setNominalClaim(request.getNilaiRecoveries());
+                        // subrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
+                        // subrogasi.setSisaKewajibanSubrogasi(cInquiry.getAmtSubrogation());
+                        // subrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
+                        // subrogasi.setPresentaseCollectingFee(Double.valueOf(0));
+                        // subrogasi.setPresentasePajak(Double.valueOf(0));
+                        // subrogasi.setIdKlaim(UUID.randomUUID().toString());
+                        // subrogasi.setStatus("0");
+
+                        // subrogasiSummary.setLineNo(request.getCounterAngsuran());
+                        // subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
+                        // subrogasiSummary.setNominalSubrogasLebih(request.getNilaiRecoveries()-cInquiry.getAmtSubrogation());
+                        // subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
+                        // subrogasiSummary.setJenisTransaksi(request.getJenisTransaksi());
+                        // subrogasiSummary.setKodeBank(request.getKodeBank());
+                        // subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
+                        // subrogasiSummary.setTglNotaKredit(new Date());
+                        // subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
+                        // subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
+                        // subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
+                        // subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
+                        // subrogasiSummary.setNominalPajak(Double.valueOf(0));
+                        // subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
+                        // subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
+                        // subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
+                        // subrogasiSummary.setTanggalJurnal(null);
+                        // subrogasiSummary.setNoJurnal(null);
+                        // subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
+                        // subrogasiSummary.setCollectingAgent(null);
+                        // subrogasiSummary.setNoNotaKredit(null);
+                        // subrogasiSummary.setmRekeningGiro(null);
+                        // subrogasiSummary.setIsNetting((byte) 0);
+                        // subrogasiSummary.setStatus("0");
 
                     } 
                     
@@ -248,44 +327,82 @@ public class T_SubrogasiSummaryController {
                         System.out.println("cInquiry REGISTRATION ID (cInquiry.getId()): "+ cInquiry.getRegistrationId());
                         System.out.println("PRELIMINARY_ID (cPreliminary.getPreliminaryId()) : "+cPreliminary.getPreliminaryId());
 
-                        subrogasi.setNoRekening(request.getNoRekening());
-                        subrogasi.setNomorPeserta(request.getNoRekening());
-                        subrogasi.setNominalClaim(request.getNilaiRecoveries());
-                        subrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
-                        subrogasi.setSisaKewajibanSubrogasi(cInquiry.getAmtSubrogation());
-                        subrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
-                        subrogasi.setPresentaseCollectingFee(Double.valueOf(0));
-                        subrogasi.setPresentasePajak(Double.valueOf(0));
-                        subrogasi.setIdKlaim(UUID.randomUUID().toString());
-                        subrogasi.setStatus("0");
+                        // subrogasi.setNoRekening(request.getNoRekening());
+                        // subrogasi.setNomorPeserta(request.getNoRekening());
+                        // subrogasi.setNominalClaim(request.getNilaiRecoveries());
+                        // subrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
+                        // subrogasi.setSisaKewajibanSubrogasi(cInquiry.getAmtSubrogation());
+                        // subrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
+                        // subrogasi.setPresentaseCollectingFee(Double.valueOf(0));
+                        // subrogasi.setPresentasePajak(Double.valueOf(0));
+                        // subrogasi.setIdKlaim(UUID.randomUUID().toString());
+                        // subrogasi.setStatus("0");
 
-                        subrogasiSummary.setLineNo(request.getCounterAngsuran());
-                        subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
-                        subrogasiSummary.setNominalSubrogasLebih(request.getNilaiRecoveries()-cInquiry.getAmtSubrogation());
-                        subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
-                        subrogasiSummary.setJenisTransaksi(request.getJenisTransaksi());
-                        subrogasiSummary.setKodeBank(request.getKodeBank());
-                        subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
-                        subrogasiSummary.setTglNotaKredit(new Date());
-                        subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
-                        subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
-                        subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
-                        subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
-                        subrogasiSummary.setNominalPajak(Double.valueOf(0));
-                        subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
-                        subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
-                        subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
-                        subrogasiSummary.setTanggalJurnal(null);
-                        subrogasiSummary.setNoJurnal(null);
-                        subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
-                        subrogasiSummary.setCollectingAgent(null);
-                        subrogasiSummary.setNoNotaKredit(null);
-                        subrogasiSummary.setmRekeningGiro(null);
-                        subrogasiSummary.setIsNetting((byte) 0);
-                        subrogasiSummary.setStatus("0");
+                        // subrogasiSummary.setLineNo(request.getCounterAngsuran());
+                        // subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
+                        // subrogasiSummary.setNominalSubrogasLebih(request.getNilaiRecoveries()-cInquiry.getAmtSubrogation());
+                        // subrogasiSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
+                        // subrogasiSummary.setJenisTransaksi(request.getJenisTransaksi());
+                        // subrogasiSummary.setKodeBank(request.getKodeBank());
+                        // subrogasiSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
+                        // subrogasiSummary.setTglNotaKredit(new Date());
+                        // subrogasiSummary.setRemark("RECOV"+request.getJenisTransaksi()+"2"+"_"+cInquiry.getBpUnitCode()+"_"+request.getNoRekening()+"_"+request.getCounterAngsuran());
+                        // subrogasiSummary.setSubrogasiId(subrogasiService.save(subrogasi));
+                        // subrogasiSummary.setNominalSubrogasiBunga(Double.valueOf(0));
+                        // subrogasiSummary.setNominalSubrogasiDenda(Double.valueOf(0));
+                        // subrogasiSummary.setNominalPajak(Double.valueOf(0));
+                        // subrogasiSummary.setNominalFeeGross(Double.valueOf(0));
+                        // subrogasiSummary.setNominalFeeNet(Double.valueOf(0));
+                        // subrogasiSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
+                        // subrogasiSummary.setTanggalJurnal(null);
+                        // subrogasiSummary.setNoJurnal(null);
+                        // subrogasiSummary.setBiayaRekonsiliasi(Double.valueOf(0));
+                        // subrogasiSummary.setCollectingAgent(null);
+                        // subrogasiSummary.setNoNotaKredit(null);
+                        // subrogasiSummary.setmRekeningGiro(null);
+                        // subrogasiSummary.setIsNetting((byte) 0);
+                        // subrogasiSummary.setStatus("0");
                         
 
-                        T_Subrogasi_Summary cSubrogasiSummary = subrogasiSummaryService.create(subrogasiSummary);
+                        // T_Subrogasi_Summary cSubrogasiSummary = subrogasiSummaryService.create(subrogasiSummary);
+
+                        String noRekening = request.getNoRekening();
+                        String nomorPeserta = request.getNoRekening();
+                        Double nominalClaim = request.getNilaiRecoveries();
+                        Double akumulasiSubrogasi = cInquiry.getAmtRecovery()+request.getNilaiRecoveries();
+                        Double sisaKewajibanSubrogasi = cInquiry.getAmtSubrogation();
+                        Double presentasiCoverage = Double.valueOf(request.getCovRatio());
+                        Double presentaseCollectingFee = Double.valueOf(0);
+                        Double presentasePajak = Double.valueOf(0);
+                        String idKlaim = UUID.randomUUID().toString();
+
+                        T_Subrogasi subrogasi = subrogasiService.save(noRekening, nomorPeserta, nominalClaim, akumulasiSubrogasi, sisaKewajibanSubrogasi, presentasiCoverage, presentaseCollectingFee, presentasePajak, idKlaim, idKlaim);
+
+                        Integer lineNomor = request.getCounterAngsuran();
+                        Double nominalSubrogasiLebih = request.getNilaiRecoveries()-cInquiry.getAmtSubrogation();
+                        Double nominalSUbrogasiPokok = request.getNilaiRecoveries();
+                        String jenisTransaksi = request.getJenisTransaksi();
+                        String kodeBank = request.getKodeBank();
+                        String kodeCabangAskrindo = request.getKodeCabangAskrindo();
+                        Date tglNotaKredit = new Date();
+                        T_Subrogasi subrogasiId =  subrogasi;
+                        Double nominalSubrogasiBunga = Double.valueOf(0);
+                        Double nominalSubrogasiDenda = Double.valueOf(0);
+                        Double nominalPajak = Double.valueOf(0);
+                        Double nominalFeeGross = Double.valueOf(0);
+                        Double nominalFeeNet = Double.valueOf(0);
+                        Double nominalSubrogasiTotal = request.getNilaiRecoveries();
+                        Date tangalJurnal = null;
+                        String noJurnal = null;
+                        Double biayaRekonsiliasi = Double.valueOf(0);
+                        String collectingAgent = null;
+                        String noNotaKredit = null;
+                        String mRekeningGiro = null;
+                        Byte isNetting = 0;
+                        String status = "0";
+                        String bpUnitCode = cInquiry.getBpUnitCode();
+
+                        T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(lineNomor, nominalSUbrogasiPokok, nominalSubrogasiLebih<0.0? 0.0 :nominalSubrogasiLebih, jenisTransaksi, kodeBank, kodeCabangAskrindo, tglNotaKredit, subrogasiId, nominalSubrogasiBunga, nominalSubrogasiDenda, nominalPajak, nominalFeeGross, nominalFeeNet, nominalSubrogasiTotal, tangalJurnal, noJurnal, biayaRekonsiliasi, collectingAgent, noNotaKredit, mRekeningGiro, isNetting, status, bpUnitCode, noRekening);
 
                         CLM_SETTLEMENT cSettlement = cSettlementService.create(cInquiry.getRegistrationId(), "CLM_SETTLE_TYPE.SUBROGATION_13", cPreliminary.getPreliminaryId(), "CLM_COMPLETION_TYPE.TEKNIS", "CLM_OPSI_PEMBAYARAN.PENUH", null, null, 5, 12, 1, '0', 0);
 
@@ -298,7 +415,7 @@ public class T_SubrogasiSummaryController {
                         response.setStatus("00");
                         response.setMessage("00");
                         response.getData().add(cSettlementSummary);
-                        response.getData().add(cSubrogasiSummary);
+                        response.getData().add(subrogasiSummary);
                         response.getData().add(cRecovPayment);
 
                         System.out.println("CEK Shs After recov :"+cRecovPayment.getAmtShsAfter());
