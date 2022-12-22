@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Logs extends BaseEnity<String>{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "no_rekening")

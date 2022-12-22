@@ -31,9 +31,7 @@ public class ResponseData<T> {
     @Override
     public String toString(){
         return "{" +
-                "status='" + status + '\'' +
-                ", message='" + message + '\'' +
-                ", data='" + data + '\'' +
+                "data='" + data + '\'' +
                 '}';
     }
 

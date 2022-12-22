@@ -15,15 +15,10 @@ public class LogsService {
     @Autowired
     private LogsRepository logsRepository;
 
-    public Logs create(String noRekening, String process, String response, String responseCode, String request,
-            String responseMessage) {
-        System.out.println("No rekening:" + noRekening.length());
-        System.out.println("response:" + response.length());
-        System.out.println("request:" + request.length());
-        System.out.println("responseMessage:" + responseMessage.length());
+    public Logs create(String noRekening, String process, String response, String responseCode, String request,String responseMessage) {
 
         Logs createLogs = new Logs();
-        createLogs.setId(1L);
+        createLogs.setId(2L);
         createLogs.setNoRekenig(noRekening);
         createLogs.setProcess(process);
         createLogs.setResponse(response);

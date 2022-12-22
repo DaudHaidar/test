@@ -28,6 +28,7 @@ import com.test.demotest.service.acs.CLM_RECOV_PAYMENTService;
 import com.test.demotest.service.acs.CLM_REGISTRATION_OSService;
 import com.test.demotest.service.acs.CLM_SETTLEMENTService;
 import com.test.demotest.service.acs.CLM_SETTLEMENT_SUMMARYService;
+import com.test.demotest.service.aos.LogsService;
 import com.test.demotest.service.aos.T_SubrogasiService;
 import com.test.demotest.service.aos.T_SubrogasiSummaryService;
 
@@ -50,6 +51,8 @@ public class T_SubrogasiSummaryController {
     private CLM_RECOV_PAYMENTService cRecovePaymentService;
     @Autowired
     private CLM_REGISTRATION_OSService cRegistrationOsService;
+    @Autowired
+    private LogsService logsService;
 
     @PostMapping("/api/v1/shs/subro")
     public ResponseEntity<ResponseData<Object>> create(@RequestBody RequestSubrogasi request){
@@ -113,6 +116,8 @@ public class T_SubrogasiSummaryController {
                     response.setStatus("00");
                     response.setMessage("00");
                     response.getData().add(subrogasiSummaryService.create(subrogasiSummary));
+
+                    logsService.create(request.getNoRekening(), "h2h-subro", response.toString(), response.getStatus(), request.toString(), response.getMessage());
 
                     return ResponseEntity.status(HttpStatus.CREATED).body(response);
                 }
@@ -178,6 +183,8 @@ public class T_SubrogasiSummaryController {
                     CLM_REGISTRATION_OS cRegistrationOs =cRegistrationOsService.update(cInquiry.getRegistrationId(), cRecovPayment.getAmtShsAfter(), cInquiry.getAmtClaimPayment()-cRecovPayment.getAmtShsAfter());
                     response.getData().add(cRegistrationOs);
 
+                    logsService.create(request.getNoRekening(), "h2h-subro", response.toString(), response.getStatus(), request.toString(), response.getMessage());
+
                     return ResponseEntity.status(HttpStatus.CREATED).body(response);
                 }            
             }  
@@ -227,6 +234,8 @@ public class T_SubrogasiSummaryController {
                         response.setStatus("00");
                         response.setMessage("00");
                         response.getData().add(subrogasiSummaryService.create(subrogasiSummary));
+
+                        logsService.create(request.getNoRekening(), "h2h-subro", response.toString(), response.getStatus(), request.toString(), response.getMessage());
 
 
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -303,7 +312,7 @@ public class T_SubrogasiSummaryController {
                         System.out.println("AMT_SETTLED :" +cRegistrationOs.getAmtSettled());
                         System.out.println("AMT_OS :"+cRegistrationOs.getAmtOs());
 
-
+                        logsService.create(request.getNoRekening(), "h2h-subro", response.toString(), response.getStatus(), request.toString(), response.getMessage());
 
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);
                     }
@@ -318,6 +327,7 @@ public class T_SubrogasiSummaryController {
             response.setStatus("01");
             response.setMessage(e.getMessage());
             System.out.println(e);
+            logsService.create(request.getNoRekening(), "h2h-subro", response.toString(), response.getStatus(), request.toString(), response.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);  
         }        
     }
