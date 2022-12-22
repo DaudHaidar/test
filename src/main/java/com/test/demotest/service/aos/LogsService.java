@@ -17,31 +17,8 @@ public class LogsService {
 
     public Logs create(String noRekening, String process, String response, String responseCode, String request,String responseMessage) {
 
-        Logs createLogs = new Logs();
-        createLogs.setId(2L);
-        createLogs.setNoRekenig(noRekening);
-        createLogs.setProcess(process);
-        createLogs.setResponse(response);
-        createLogs.setResponseCode(responseCode);
-        createLogs.setRequest(request);
-        createLogs.setResponseMessage(responseMessage);
+        Logs createLogs = new Logs(noRekening,process,request,response,responseCode,responseMessage);
         return logsRepository.save(createLogs);
-    }
-
-    public Logs update(String noRekening, String process, String response, String responseCode, String request,
-            String responseMessage, Long id) {
-        if (!(logsRepository.findById(id).isPresent())) {
-            throw new RuntimeException("Id logs tidak ditemukan");
-        }
-        Logs updateLogs = logsRepository.findById(id).get();
-        updateLogs.setId(id);
-        updateLogs.setNoRekenig(noRekening);
-        updateLogs.setProcess(process);
-        updateLogs.setResponse(response);
-        updateLogs.setResponseCode(responseCode);
-        updateLogs.setRequest(request);
-        updateLogs.setResponseMessage(responseMessage);
-        return logsRepository.save(updateLogs);
     }
 
     public Iterable<Logs> getAll() {
