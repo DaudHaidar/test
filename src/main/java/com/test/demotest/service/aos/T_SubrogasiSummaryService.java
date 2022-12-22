@@ -19,10 +19,18 @@ public class T_SubrogasiSummaryService {
     @Autowired
     private T_SubrogasiSummaryRepository subrogasiSummaryRepository;
 
-    public T_Subrogasi_Summary save(RequestSubrogasi request, CLM_INQUIRY_SUBROGATION_CREDIT cInquiry,T_Subrogasi subrogasiId){
+    public T_Subrogasi_Summary save(RequestSubrogasi request, CLM_INQUIRY_SUBROGATION_CREDIT cInquiry,T_Subrogasi subrogasiId, String logicSubro){
 
         Integer lineNomor = request.getCounterAngsuran();
-        Double nominalSubrogasiLebih = request.getNilaiRecoveries()-cInquiry.getAmtSubrogation();
+        Double nominalSubrogasiLebih ;
+        
+        if(logicSubro=="logic_subro_<_0"){
+            nominalSubrogasiLebih = request.getNilaiRecoveries()-cInquiry.getAmtSubrogation();
+        }else if(logicSubro=="logic_subro_>_0"){
+            nominalSubrogasiLebih = request.getNilaiRecoveries()-cInquiry.getAmtSubrogation()<0.0? 0.0:request.getNilaiRecoveries()-cInquiry.getAmtSubrogation();
+        }else{
+            nominalSubrogasiLebih = null;
+        }
 
         T_Subrogasi_Summary subroSummary = new T_Subrogasi_Summary();
         subroSummary.setLineNo(request.getCounterAngsuran());

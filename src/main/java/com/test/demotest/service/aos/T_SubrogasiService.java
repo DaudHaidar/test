@@ -70,5 +70,9 @@ public class T_SubrogasiService {
         subrogasiRepository.deleteById(id);
     }
 
+    public T_Subrogasi findByNoRekening(String noRekening){
+        return subrogasiRepository.findByNoRekening(noRekening);
+    }
+
 
 }
