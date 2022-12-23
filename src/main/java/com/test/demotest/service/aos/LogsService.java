@@ -5,6 +5,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.test.demotest.dto.RequestSubrogasi;
+import com.test.demotest.dto.ResponseData;
 import com.test.demotest.entity.aos.Logs;
 import com.test.demotest.repository.aos.LogsRepository;
 
@@ -15,9 +17,9 @@ public class LogsService {
     @Autowired
     private LogsRepository logsRepository;
 
-    public Logs create(String noRekening, String process, String response, String responseCode, String request,String responseMessage) {
+    public Logs create(RequestSubrogasi request, ResponseData<Object> response ) {
 
-        Logs createLogs = new Logs(noRekening,process,request,response,responseCode,responseMessage);
+        Logs createLogs = new Logs(request.getNoRekening(),"h2h-subro",request.toString(),response.toString(),response.getStatus(),response.getMessage());
         return logsRepository.save(createLogs);
     }
 

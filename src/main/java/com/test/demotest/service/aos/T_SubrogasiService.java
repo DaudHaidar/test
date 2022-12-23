@@ -1,5 +1,6 @@
 package com.test.demotest.service.aos;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -24,7 +25,7 @@ public class T_SubrogasiService {
         T_Subrogasi tSubrogasi = new T_Subrogasi();
 
         Double akumulasiSubrogasi = cInquiry.getAmtRecovery()+request.getNilaiRecoveries();
-
+        tSubrogasi.setId(UUID.randomUUID().toString());
         tSubrogasi.setNoRekening(request.getNoRekening());
         tSubrogasi.setNomorPeserta(request.getNoRekening());
         tSubrogasi.setNominalClaim(request.getNilaiRecoveries());
@@ -70,8 +71,14 @@ public class T_SubrogasiService {
         subrogasiRepository.deleteById(id);
     }
 
-    public T_Subrogasi findByNoRekening(String noRekening){
-        return subrogasiRepository.findByNoRekening(noRekening);
+    public List<T_Subrogasi> findByNoRekening(String noRekening){
+        try {
+            return subrogasiRepository.findByNoRekening(noRekening);
+        } catch (Exception e) {
+            System.out.println("error service :"+ e);
+            throw new RuntimeException(e.getMessage());
+        }
+        
     }
 
 

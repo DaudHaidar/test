@@ -16,7 +16,7 @@ public class T_Subrogasi extends BaseEnity<String>{
 
     @Id
     @Column(name = "id", unique = true,length = 60)
-    private String id = UUID.randomUUID().toString();
+    private String id;
     @Column(name = "no_rekening",length = 50)
     private String noRekening;
     @Column(name = "nomor_peserta",length = 50)
