@@ -1,12 +1,15 @@
 package com.test.demotest.entity.acs;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.test.demotest.entity.aos.BaseEnity;
@@ -48,7 +51,6 @@ public class CLM_SETTLEMENT extends BaseEnity<String> {
     @Column(name = "TXT_DESCRIPTION",length = 200)
     private String txtDescription;
     @Column(name = "VERSION",precision = 10)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer version;
     @Column(name ="IS_NONPROP_TREATY",length = 1 )
     private Character isNonpropTreaty;
@@ -58,6 +60,7 @@ public class CLM_SETTLEMENT extends BaseEnity<String> {
     private String printBy;
     @Column(name = "PRINT_COUNTER",length = 4,precision = 10)
     private Integer printCounter;
+
 
     public String getSettlementId() {
         return settlementId;
@@ -185,6 +188,18 @@ public class CLM_SETTLEMENT extends BaseEnity<String> {
     public void setPrintCounter(Integer printCounter) {
         this.printCounter = printCounter;
     }
+
+    @Override
+    public String toString(){
+        return "{" +
+        "settlementId='" + settlementId + '\'' +
+        ", version ='" + version + '\'' +
+        ", registrationId='" + registrationId + '\'' +
+        ", createdDate='" + createdDate + '\'' +
+
+        '}';
+    }
+    
     
 
 }

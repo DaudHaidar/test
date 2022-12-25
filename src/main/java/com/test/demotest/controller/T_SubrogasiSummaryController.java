@@ -104,13 +104,14 @@ public class T_SubrogasiSummaryController {
                     ResponseData<Object> response = new ResponseData<Object>();
                     response.setStatus("00");
                     response.setMessage("00");
-                    response.getData().add(subrogasiSummary);
+                    
                     response.getData().add(cSettlementSummary);
                     response.getData().add(cRecovPayment);
 
                     CLM_REGISTRATION_OS cRegistrationOs =cRegistrationOsService.update(cInquiry,cRecovPayment);
 
                     response.getData().add(cRegistrationOs);
+                    response.getData().add(subrogasiSummary);
 
                     logsService.create(request, response);
 
@@ -151,7 +152,7 @@ public class T_SubrogasiSummaryController {
                         ResponseData<Object> response = new ResponseData<Object>();
                         response.setStatus("00");
                         response.setMessage("00");
-                        response.getData().add(subrogasiSummary);
+                        
                         response.getData().add(cSettlementSummary);
                         response.getData().add(cRecovPayment);
 
@@ -159,7 +160,7 @@ public class T_SubrogasiSummaryController {
                         CLM_REGISTRATION_OS cRegistrationOs =cRegistrationOsService.update(cInquiry,cRecovPayment);
 
                         response.getData().add(cRegistrationOs);
-
+                        response.getData().add(subrogasiSummary);
                         logsService.create(request, response);
 
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);

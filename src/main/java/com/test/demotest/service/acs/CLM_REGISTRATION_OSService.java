@@ -32,7 +32,7 @@ public class CLM_REGISTRATION_OSService {
         List<CLM_REGISTRATION_OS> registrationOsList = new ArrayList<>(findByRegistrationId(cInquiry.getRegistrationId()));
 
         CLM_REGISTRATION_OS registrationOsFilter = registrationOsList.stream().filter(( CLM_REGISTRATION_OS clmRegist)->{
-            System.out.println("CLM REGIST  :" + clmRegist);
+
             return clmRegist.getClmOstype().equals("SUBROGATION");
         }).findFirst().get();
 

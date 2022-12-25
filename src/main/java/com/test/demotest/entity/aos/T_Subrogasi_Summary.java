@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "t_subrogasi_summary")
 public class T_Subrogasi_Summary extends BaseEnity<String>{
@@ -64,6 +66,7 @@ public class T_Subrogasi_Summary extends BaseEnity<String>{
 
     @ManyToOne
     @JoinColumn(name = "id_subrogasi")
+    @JsonManagedReference
     private T_Subrogasi subrogasiId;
 
     
