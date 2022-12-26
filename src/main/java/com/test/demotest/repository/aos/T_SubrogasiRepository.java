@@ -8,6 +8,7 @@ import com.test.demotest.entity.aos.T_Subrogasi;
 
 public interface T_SubrogasiRepository extends JpaRepository<T_Subrogasi, String> {
 
-    List<T_Subrogasi> findByNoRekening(String noRekening);
+    T_Subrogasi findByNoRekening(String noRekening);
+    
     
 }

@@ -1,8 +1,6 @@
 package com.test.demotest.service.acs;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -36,23 +34,12 @@ public class CLM_SETTLEMENTService{
         
         CLM_SETTLEMENT lastIndexRegistration = settlementSortedByDate.get(settlement.size()-1);
 
-        System.out.println("LAST INDEX REGSITRATION : "+lastIndexRegistration.toString());
-        System.out.println("VERSION  lastIndexRegistration : "+lastIndexRegistration.getVersion());
-
         if(lastIndexRegistration.getVersion()==null){
             version = 1;
-            System.out.println("VERSION last :"+ "null");
         }else{
             version = lastIndexRegistration.getVersion()+1;
-            System.out.println("VERSION PLUS 1 :"+ version);
+
         }
-
-
-
-        System.out.println("VERSION after plus :"+ version);
-        System.out.println("clm size :"+settlementSortedByDate.size());
-
-        
 
         CLM_SETTLEMENT createSettlement = new CLM_SETTLEMENT();
         createSettlement.setVersion(version);
@@ -79,17 +66,3 @@ public class CLM_SETTLEMENTService{
     }
 
 }
-
-/**
- * com.test.demotest.entity.acs.CLM_SETTLEMENT@4793c14b]
-LAST INDEX REGSITRATION : com.test.demotest.entity.acs.CLM_SETTLEMENT@4793c14b
-VERSION  lastIndexRegistration : 0
-VERSION PLUS 1 :1
- */
-
- /**
-  * LAST INDEX REGSITRATION : com.test.demotest.entity.acs.CLM_SETTLEMENT@322f55ad
-VERSION  lastIndexRegistration : 0
-VERSION last :null
-VERSION after plus :1
-  */

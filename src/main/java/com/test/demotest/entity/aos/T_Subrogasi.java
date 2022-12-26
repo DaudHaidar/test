@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "t_subrogasi")
 public class T_Subrogasi extends BaseEnity<String>{
@@ -38,8 +40,6 @@ public class T_Subrogasi extends BaseEnity<String>{
     @Column(name = "status",length = 5)
     private String status;
 
-    @OneToMany(mappedBy = "subrogasiId")
-    private List<T_Subrogasi_Summary> subrogasiSummary= new ArrayList<T_Subrogasi_Summary>();
     
 
     public String getId() {
@@ -107,18 +107,7 @@ public class T_Subrogasi extends BaseEnity<String>{
     }
     public void setStatus(String status) {
         this.status = status;
-    }
-    public List<T_Subrogasi_Summary> getSubrogasiSummary() {
-        return subrogasiSummary;
-    }
-    public void setSubrogasiSummary(List<T_Subrogasi_Summary> subrogasiSummary) {
-        this.subrogasiSummary = subrogasiSummary;
-    }
-
-    
-
-    
-    
+    } 
 
     
 }

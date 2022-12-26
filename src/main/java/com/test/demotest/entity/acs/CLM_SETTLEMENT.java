@@ -196,6 +196,7 @@ public class CLM_SETTLEMENT extends BaseEnity<String> {
         ", version ='" + version + '\'' +
         ", registrationId='" + registrationId + '\'' +
         ", createdDate='" + createdDate + '\'' +
+        ", createdBy='" + createdBy + '\'' +
 
         '}';
     }

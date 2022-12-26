@@ -46,6 +46,7 @@ public class T_SubrogasiService {
         }
 
         T_Subrogasi updtSubrogasi = subrogasiRepository.findById(id).get();
+        System.out.println("updtSubro : "+ updtSubrogasi.getId());
         updtSubrogasi.setId(id);
         updtSubrogasi.setNoRekening(request.getNoRekening());
         updtSubrogasi.setNomorPeserta(request.getNoRekening());
@@ -71,7 +72,7 @@ public class T_SubrogasiService {
         subrogasiRepository.deleteById(id);
     }
 
-    public List<T_Subrogasi> findByNoRekening(String noRekening){
+    public T_Subrogasi findByNoRekening(String noRekening){
         try {
             return subrogasiRepository.findByNoRekening(noRekening);
         } catch (Exception e) {
