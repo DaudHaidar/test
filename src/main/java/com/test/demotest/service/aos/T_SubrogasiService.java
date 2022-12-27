@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.test.demotest.dto.RequestSubrogasi;
 import com.test.demotest.entity.acs.CLM_INQUIRY_SUBROGATION_CREDIT;
+import com.test.demotest.entity.acs.CLM_RECOV_PAYMENT;
 import com.test.demotest.entity.aos.T_Subrogasi;
 import com.test.demotest.repository.aos.T_SubrogasiRepository;
 
@@ -20,7 +21,15 @@ public class T_SubrogasiService {
     @Autowired
     private T_SubrogasiRepository subrogasiRepository;
 
-    public T_Subrogasi save(RequestSubrogasi request, CLM_INQUIRY_SUBROGATION_CREDIT cInquiry){
+    public T_Subrogasi save(RequestSubrogasi request, CLM_INQUIRY_SUBROGATION_CREDIT cInquiry, CLM_RECOV_PAYMENT cRecovPayment){
+
+        Double sisaKewajibanSubrogasi ;
+
+        if(cRecovPayment == null){
+            sisaKewajibanSubrogasi = cInquiry.getAmtSubrogation();
+       }else{
+           sisaKewajibanSubrogasi = cRecovPayment.getAmtShsAfter();
+       }
 
         T_Subrogasi tSubrogasi = new T_Subrogasi();
 
@@ -30,7 +39,7 @@ public class T_SubrogasiService {
         tSubrogasi.setNomorPeserta(request.getNoRekening());
         tSubrogasi.setNominalClaim(request.getNilaiRecoveries());
         tSubrogasi.setAkumulasiSubrogasi(akumulasiSubrogasi);
-        tSubrogasi.setSisaKewajibanSubrogasi(cInquiry.getAmtSubrogation());
+        tSubrogasi.setSisaKewajibanSubrogasi(sisaKewajibanSubrogasi);
         tSubrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
         tSubrogasi.setPresentaseCollectingFee(Double.valueOf(0));
         tSubrogasi.setPresentasePajak(Double.valueOf(0));
@@ -40,9 +49,16 @@ public class T_SubrogasiService {
         return subrogasiRepository.save(tSubrogasi);
     }
 
-    public T_Subrogasi update(RequestSubrogasi request, CLM_INQUIRY_SUBROGATION_CREDIT cInquiry, String id){
+    public T_Subrogasi update(RequestSubrogasi request, CLM_INQUIRY_SUBROGATION_CREDIT cInquiry, String id,CLM_RECOV_PAYMENT cRecovPayment){
+
+        Double sisaKewajibanSubrogasi ;
         if(!(subrogasiRepository.findById(id).isPresent())){
             throw new RuntimeException("subrogasi dengan id"+ id+"tidak ditemukan");
+        }
+        if(cRecovPayment == null){
+             sisaKewajibanSubrogasi = cInquiry.getAmtSubrogation();
+        }else{
+            sisaKewajibanSubrogasi = cRecovPayment.getAmtShsAfter();
         }
 
         T_Subrogasi updtSubrogasi = subrogasiRepository.findById(id).get();
@@ -52,7 +68,7 @@ public class T_SubrogasiService {
         updtSubrogasi.setNomorPeserta(request.getNoRekening());
         updtSubrogasi.setNominalClaim(request.getNilaiRecoveries());
         updtSubrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
-        updtSubrogasi.setSisaKewajibanSubrogasi(cInquiry.getAmtSubrogation());
+        updtSubrogasi.setSisaKewajibanSubrogasi(sisaKewajibanSubrogasi);
         updtSubrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
         return subrogasiRepository.save(updtSubrogasi);
     }

@@ -70,7 +70,7 @@ public class CLM_INQUIRY_SUBROGRATIONController {
     //ngetest get yang belum  lunas subrogationnya
     @GetMapping("/api/v1/shs/subro/notZero")
     public ResponseEntity<ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>>> getBelomLunas(Double sisa){
-        sisa=100000.0;
+        sisa=200000.0;
         List<CLM_INQUIRY_SUBROGATION_CREDIT> cInquiry =  cInquiryService.getByZeroSubrogration(sisa);
 
             if(cInquiry != null && sisa>0){
@@ -83,7 +83,7 @@ public class CLM_INQUIRY_SUBROGRATIONController {
 
             ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>> response = new ResponseData<List<CLM_INQUIRY_SUBROGATION_CREDIT>>();
             response.setStatus("00");
-            response.setMessage("00");
+            response.setMessage("null");
             response.getData().add(cInquiry);
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response); 

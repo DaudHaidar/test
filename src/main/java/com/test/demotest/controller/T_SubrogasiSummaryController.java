@@ -76,7 +76,7 @@ public class T_SubrogasiSummaryController {
                     
                     if(subroByNoRek == null){
 
-                        T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry);
+                        T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry,null);
 
                         T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_<=_0");
 
@@ -91,7 +91,7 @@ public class T_SubrogasiSummaryController {
 
                     }
 
-                        T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId());
+                        T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),null);
 
                         T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_<=_0");
 
@@ -108,16 +108,17 @@ public class T_SubrogasiSummaryController {
                 }
                 else if(cInquiry.getAmtSubrogation() >0){
 
-                    if(subroByNoRek == null){
-                        T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry);
-
-                        T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");                   
+                    if(subroByNoRek == null){               
 
                         CLM_SETTLEMENT cSettlement = cSettlementService.create(cInquiry,cPreliminary);
 
                         CLM_SETTLEMENT_SUMMARY cSettlementSummary = cSettlementSummaryService.create( cSettlement, cInquiry);
 
                         CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create( cInquiry, cSettlement,request);
+
+                        T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry,cRecovPayment);
+
+                        T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");    
 
                         ResponseData<Object> response = new ResponseData<Object>();
                         response.setStatus("00");
@@ -134,17 +135,18 @@ public class T_SubrogasiSummaryController {
                         logsService.create(request, response);
 
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);
-                    }
-
-                    T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId());
-
-                    T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");                   
+                    }              
 
                     CLM_SETTLEMENT cSettlement = cSettlementService.create(cInquiry,cPreliminary);
 
                     CLM_SETTLEMENT_SUMMARY cSettlementSummary = cSettlementSummaryService.create( cSettlement, cInquiry);
 
                     CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create( cInquiry, cSettlement,request);
+
+
+                    T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),cRecovPayment);
+
+                    T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");     
 
                     ResponseData<Object> response = new ResponseData<Object>();
                     response.setStatus("00");
@@ -170,7 +172,7 @@ public class T_SubrogasiSummaryController {
                 if(cInquiry.getAmtSubrogation() <= 0){
 
                     if(subroByNoRek==null){
-                        T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry);
+                        T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry,null);
 
                         T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_<=_0");
     
@@ -184,7 +186,7 @@ public class T_SubrogasiSummaryController {
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);
                     }
                         
-                    T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId());
+                    T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),null);
 
                     T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_<=_0");
 
@@ -203,14 +205,17 @@ public class T_SubrogasiSummaryController {
 
                     if(subroByNoRek == null){
 
-                        T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry);
-
-                        T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");                   
+                        
                         CLM_SETTLEMENT cSettlement = cSettlementService.create(cInquiry,cPreliminary);
 
                         CLM_SETTLEMENT_SUMMARY cSettlementSummary = cSettlementSummaryService.create( cSettlement, cInquiry);
 
                         CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create( cInquiry, cSettlement,request);
+
+                        T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry,cRecovPayment);
+
+                        T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");           
+                        
 
                         ResponseData<Object> response = new ResponseData<Object>();
                         response.setStatus("00");
@@ -229,15 +234,17 @@ public class T_SubrogasiSummaryController {
 
                     }
                         
-                    T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId());
-
-                    T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");   
-
+                    
                     CLM_SETTLEMENT cSettlement = cSettlementService.create(cInquiry,cPreliminary);
 
                     CLM_SETTLEMENT_SUMMARY cSettlementSummary = cSettlementSummaryService.create( cSettlement, cInquiry);
 
                     CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create( cInquiry, cSettlement,request);
+
+                    T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),cRecovPayment);
+
+                    T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");   
+
 
                     ResponseData<Object> response = new ResponseData<Object>();
                     response.setStatus("00");
