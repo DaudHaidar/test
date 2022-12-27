@@ -29,38 +29,33 @@ public class T_SubrogasiSummaryService {
         Integer lineNomor = request.getCounterAngsuran();
         Double nominalSubrogasiLebih;
 
-        List<T_Subrogasi_Summary> subroSummaryBySubroId = findBySubroId(subrogasiId.getId());
-        List<T_Subrogasi_Summary> subroSummaryFilteredByDate = subroSummaryBySubroId.stream().sorted(Comparator.comparing(T_Subrogasi_Summary::getCreatedDate)).collect(Collectors.toList());
-
-        Double nominalLebihSubro = subroSummaryFilteredByDate.get(subroSummaryFilteredByDate.size()-1).getNominalSubrogasLebih();
-
         if (logicSubro == "logic_subro_<=_0") {
-            nominalSubrogasiLebih = request.getNilaiRecoveries() + nominalLebihSubro;
+            nominalSubrogasiLebih = 0.0;
         } else if (logicSubro == "logic_subro_>_0") {
             nominalSubrogasiLebih = request.getNilaiRecoveries() - cInquiry.getAmtSubrogation() < 0.0 ? 0.0
                     : request.getNilaiRecoveries() - cInquiry.getAmtSubrogation();
         } else {
-            nominalSubrogasiLebih = null;
+            nominalSubrogasiLebih = 0.0;
         }
 
         T_Subrogasi_Summary subroSummary = new T_Subrogasi_Summary();
         subroSummary.setId(UUID.randomUUID().toString());
+        subroSummary.setSubrogasiId(subrogasiId);
         subroSummary.setLineNo(request.getCounterAngsuran());
         subroSummary.setNominalSubrogasiPokok(request.getNilaiRecoveries());
-        subroSummary.setNominalSubrogasLebih(nominalSubrogasiLebih);
         subroSummary.setJenisTransaksi(request.getJenisTransaksi());
         subroSummary.setKodeBank(request.getKodeBank());
         subroSummary.setKodeCabangAskrindo(request.getKodeCabangAskrindo());
         subroSummary.setTglNotaKredit(new Date());
         subroSummary.setRemark("RECOV" + request.getJenisTransaksi() + "2" + "_" + cInquiry.getBpUnitCode() + "_"
                 + request.getNoRekening() + "_" + lineNomor);
-        subroSummary.setSubrogasiId(subrogasiId);
         subroSummary.setNominalSubrogasiBunga(Double.valueOf(0));
         subroSummary.setNominalSubrogasiDenda(Double.valueOf(0));
         subroSummary.setNominalPajak(Double.valueOf(0));
         subroSummary.setNominalFeeGross(Double.valueOf(0));
         subroSummary.setNominalFeeNet(Double.valueOf(0));
         subroSummary.setNominalSubrogasiTotal(request.getNilaiRecoveries());
+        subroSummary.setNominalSubrogasLebih(nominalSubrogasiLebih);
         subroSummary.setTanggalJurnal(null);
         subroSummary.setNoJurnal(null);
         subroSummary.setBiayaRekonsiliasi(Double.valueOf(0));
@@ -70,7 +65,38 @@ public class T_SubrogasiSummaryService {
         subroSummary.setIsNetting((byte) 0);
         subroSummary.setStatus("0");
 
-        return subrogasiSummaryRepository.save(subroSummary);
+        T_Subrogasi_Summary createSubroSummary = subrogasiSummaryRepository.save(subroSummary);
+
+        if (logicSubro == "logic_subro_<=_0") {
+
+            List<T_Subrogasi_Summary> subroSummaryBySubroId = findBySubroId(subrogasiId.getId());
+            List<T_Subrogasi_Summary> subroSummaryFilteredByDate = subroSummaryBySubroId.stream().sorted(Comparator.comparing(T_Subrogasi_Summary::getCreatedDate)).collect(Collectors.toList());
+            T_Subrogasi_Summary getLastIndex = subroSummaryFilteredByDate.size() < 2 ? subroSummaryFilteredByDate.get(subroSummaryFilteredByDate.size() - 1):subroSummaryFilteredByDate.get(subroSummaryFilteredByDate.size() - 2);
+            Double nominalLebihSubroExisting = getLastIndex.getNominalSubrogasLebih();
+    
+    
+            System.out.println("GET ID :" + subrogasiId.getId());
+            System.out.println("GET SUBRO BY ID " + subroSummaryBySubroId);
+            System.out.println("LIST SUBRO SUMARRY FILTERED :" + subroSummaryFilteredByDate);
+            System.out.println("SIZE LIST : "+ subroSummaryFilteredByDate.size());
+            System.out.println("SIZE INDEX "+ subroSummaryFilteredByDate.size());
+            System.out.println("LIST SUBRO LAST INDEX :" + subroSummaryFilteredByDate.get(subroSummaryFilteredByDate.size() - 1));
+            System.out.println("subrosummary id : " +  subroSummaryFilteredByDate.get(subroSummaryFilteredByDate.size() - 1).getId());
+            System.out.println("nominal lebih subro  "+ nominalLebihSubroExisting);
+
+            nominalSubrogasiLebih = request.getNilaiRecoveries() + nominalLebihSubroExisting;
+            T_Subrogasi_Summary updtNominalSubrogasiSummary = subrogasiSummaryRepository.findById(createSubroSummary.getId()).get();
+            updtNominalSubrogasiSummary.setId(createSubroSummary.getId());
+            updtNominalSubrogasiSummary.setNominalSubrogasLebih(nominalSubrogasiLebih);
+
+            System.out.println("UPDATE NOMINAL LEBIH" + updtNominalSubrogasiSummary);
+
+            return subrogasiSummaryRepository.save(updtNominalSubrogasiSummary);
+
+        }  else {
+            return createSubroSummary;
+        }    
+
     }
 
     public Iterable<T_Subrogasi_Summary> getAll() {

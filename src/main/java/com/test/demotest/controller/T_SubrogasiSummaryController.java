@@ -60,6 +60,8 @@ public class T_SubrogasiSummaryController {
         CLM_INQUIRY_SUBROGATION_CREDIT cInquiry = cInquiryService.getByNoRekening(request.getNoRekening());
         CLM_PRELIMINARY cPreliminary = cPreliminaryService.findRegistrationId(cInquiry.getRegistrationId());
         T_Subrogasi subroByNoRek = subrogasiService.findByNoRekening(request.getNoRekening());
+        System.out.println("find subro by no rek : "+ subroByNoRek);
+
         
         if(cInquiry != null){
 

@@ -13,13 +13,15 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.ToString;
+
 @Entity
 @Table(name = "t_subrogasi_summary")
 public class T_Subrogasi_Summary extends BaseEnity<String> {
 
     @Id
     @Column(name = "id", unique = true, length = 60)
-    private String id ;
+    private String id;
     @Column(name = "line_no")
     private Integer lineNo;
     @Column(name = "nominal_subrogasi_pokok", precision = 18, scale = 2)
@@ -263,14 +265,15 @@ public class T_Subrogasi_Summary extends BaseEnity<String> {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "{" +
-        "subrogasiId ='" + subrogasiId + '\'' +
-        ", createdDate='" + createdDate + '\'' +
-        ", createdBy='" + createdBy + '\'' +
-
-        '}';
+                "subroSummaryId ='" + id + '\'' +
+                "subrogasiId ='" + subrogasiId.getId() + '\'' +
+                ", nomialSubroLebih ='" + nominalSubrogasLebih + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", createdBy='" + createdBy + '\'' +
+            
+                '}';
     }
 
-    
 }
