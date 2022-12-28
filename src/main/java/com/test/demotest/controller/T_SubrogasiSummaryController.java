@@ -85,6 +85,7 @@ public class T_SubrogasiSummaryController {
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
                     } else if(cInquiry.getAmtSubrogation() > 0){
+
                         CLM_SETTLEMENT cSettlement = cSettlementService.create(cInquiry,cPreliminary);
 
                         CLM_SETTLEMENT_SUMMARY cSettlementSummary = cSettlementSummaryService.create( cSettlement, cInquiry);
@@ -115,16 +116,20 @@ public class T_SubrogasiSummaryController {
                 }    
             }
             else if(subroByNoRek != null){
-                
+
                 List<T_Subrogasi_Summary> subroSummaryBySubroId= subrogasiSummaryService.findBySubroId(subroByNoRek.getId());
                 List<T_Subrogasi_Summary> subroSummaryBySubroIdSortedByDate = subroSummaryBySubroId.stream().sorted(Comparator.comparing(T_Subrogasi_Summary::getCreatedDate)).collect(Collectors.toList());
                 
                 Integer getLastLineNo = subroSummaryBySubroIdSortedByDate.get(subroSummaryBySubroIdSortedByDate.size()-1).getLineNo();
 
                 Integer counterAngsuranExist = request.getCounterAngsuran();
+
+                //cek line_no sudah ada atau belum di database table subrogasi_summary
                 boolean lineNoExists = subroSummaryBySubroId.stream().map(T_Subrogasi_Summary::getLineNo).anyMatch(counterAngsuranExist::equals);
 
                 Integer counterAngsuranSequential = request.getCounterAngsuran()-1;
+                
+                //cek line_no loncat atau tidak di database table subrogasi_summary
                 boolean lineNoSequential = subroSummaryBySubroId.stream().map(T_Subrogasi_Summary::getLineNo).anyMatch(counterAngsuranSequential::equals);
 
                 if(lineNoExists == true){

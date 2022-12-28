@@ -267,8 +267,9 @@ public class T_Subrogasi_Summary extends BaseEnity<String> {
     @Override
     public String toString() {
         return "{" +
-                "subroSummaryId ='" + id + '\'' +
-                "subrogasiId ='" + subrogasiId.getId() + '\'' +
+                "subroSummaryId ='" + id + '\'' + ','+
+                "subrogasiId ='" + subrogasiId.getId() + '\'' +','+
+                "akumulasiSubrogasi ='" + subrogasiId.getAkumulasiSubrogasi() + '\'' +
                 ", nomialSubroLebih ='" + nominalSubrogasLebih + '\'' +
                 ", createdDate='" + createdDate + '\'' +
                 ", createdBy='" + createdBy + '\'' +

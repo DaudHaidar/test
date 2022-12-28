@@ -14,4 +14,6 @@ public interface T_SubrogasiSummaryRepository extends JpaRepository<T_Subrogasi_
     @Query(nativeQuery = true, value = "SELECT * FROM t_subrogasi_summary WHERE id_subrogasi = :subrogasiId")
     List<T_Subrogasi_Summary> findBySubrogasiId(String subrogasiId);
 
+    
+
 }

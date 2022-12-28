@@ -23,7 +23,7 @@ public class T_Subrogasi extends BaseEnity<String>{
     private String noRekening;
     @Column(name = "nomor_peserta",length = 50)
     private String nomorPeserta;
-    @Column(name = "nominal_claim",precision = 18,scale = 2)
+    @Column(name = "nominal_recoveries",precision = 18,scale = 2)
     private Double nominalClaim;
     @Column(name = "akumulasi_subrogasi",precision = 18,scale = 2)
     private Double akumulasiSubrogasi;

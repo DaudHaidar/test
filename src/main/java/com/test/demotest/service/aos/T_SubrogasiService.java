@@ -1,7 +1,10 @@
 package com.test.demotest.service.aos;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -12,6 +15,7 @@ import com.test.demotest.dto.RequestSubrogasi;
 import com.test.demotest.entity.acs.CLM_INQUIRY_SUBROGATION_CREDIT;
 import com.test.demotest.entity.acs.CLM_RECOV_PAYMENT;
 import com.test.demotest.entity.aos.T_Subrogasi;
+import com.test.demotest.entity.aos.T_Subrogasi_Summary;
 import com.test.demotest.repository.aos.T_SubrogasiRepository;
 
 
@@ -20,6 +24,8 @@ import com.test.demotest.repository.aos.T_SubrogasiRepository;
 public class T_SubrogasiService {
     @Autowired
     private T_SubrogasiRepository subrogasiRepository;
+    @Autowired
+    private T_SubrogasiSummaryService subrogasiSummaryService;
 
     public T_Subrogasi save(RequestSubrogasi request, CLM_INQUIRY_SUBROGATION_CREDIT cInquiry, CLM_RECOV_PAYMENT cRecovPayment){
 
@@ -52,14 +58,19 @@ public class T_SubrogasiService {
     public T_Subrogasi update(RequestSubrogasi request, CLM_INQUIRY_SUBROGATION_CREDIT cInquiry, String id,CLM_RECOV_PAYMENT cRecovPayment){
 
         Double sisaKewajibanSubrogasi ;
+
         if(!(subrogasiRepository.findById(id).isPresent())){
             throw new RuntimeException("subrogasi dengan id"+ id+"tidak ditemukan");
         }
+
         if(cRecovPayment == null){
-             sisaKewajibanSubrogasi = cInquiry.getAmtSubrogation();
-        }else{
-            sisaKewajibanSubrogasi = cRecovPayment.getAmtShsAfter();
-        }
+            sisaKewajibanSubrogasi = cInquiry.getAmtSubrogation();
+            
+            
+       }else{
+           sisaKewajibanSubrogasi = cRecovPayment.getAmtShsAfter();
+          
+       }
 
         T_Subrogasi updtSubrogasi = subrogasiRepository.findById(id).get();
         System.out.println("updtSubro : "+ updtSubrogasi.getId());
@@ -67,10 +78,52 @@ public class T_SubrogasiService {
         updtSubrogasi.setNoRekening(request.getNoRekening());
         updtSubrogasi.setNomorPeserta(request.getNoRekening());
         updtSubrogasi.setNominalClaim(request.getNilaiRecoveries());
-        updtSubrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
         updtSubrogasi.setSisaKewajibanSubrogasi(sisaKewajibanSubrogasi);
+        updtSubrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
         updtSubrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
-        return subrogasiRepository.save(updtSubrogasi);
+        
+        subrogasiRepository.save(updtSubrogasi);
+
+
+
+        Double totalAkumulasiSubrogasi;
+        Double totalNominalSubrogasiPokok;
+
+        if(cRecovPayment == null){
+
+            List<T_Subrogasi_Summary> getNominalSubrogasiPokok = subrogasiSummaryService.findBySubroId(id);
+             
+            List<T_Subrogasi_Summary> getNominalSubrogasiPokokSortedByDate = getNominalSubrogasiPokok.stream().sorted(Comparator.comparing(T_Subrogasi_Summary::getCreatedDate)).collect(Collectors.toList());
+    
+            T_Subrogasi_Summary getLastIndexSubroSummary = getNominalSubrogasiPokokSortedByDate.get(getNominalSubrogasiPokokSortedByDate.size()-1);
+    
+            totalNominalSubrogasiPokok = getNominalSubrogasiPokokSortedByDate.stream().filter(subrogasiLebih-> subrogasiLebih.getNominalSubrogasLebih()>0).mapToDouble(nominalSubroPokok -> nominalSubroPokok.getNominalSubrogasiPokok()).sum();
+    
+            List<T_Subrogasi_Summary >subroGetLastIndexByFilter = getNominalSubrogasiPokokSortedByDate.stream().filter(subrogasiLebih-> subrogasiLebih.getNominalSubrogasLebih()>0).collect(Collectors.toList());
+    
+            System.out.println("GET LASTT NDEXX POKOK :" + subroGetLastIndexByFilter);
+    
+            System.out.println("GET NOMINAL SUBROGASI POKOK :" + getNominalSubrogasiPokokSortedByDate);
+            System.out.println("cInquiry amt recovery :" +cInquiry.getAmtRecovery());
+            System.out.println("totalNominalSubrogasiPokok :" + totalNominalSubrogasiPokok);
+            totalAkumulasiSubrogasi = getLastIndexSubroSummary.getSubrogasiId().getAkumulasiSubrogasi()+totalNominalSubrogasiPokok;      
+            
+       }else{
+           totalAkumulasiSubrogasi= cInquiry.getAmtRecovery()+request.getNilaiRecoveries();
+       }
+
+        //alasan diupdate 2 kali karena table subrogasi_summary belum ke create kalau table subrogasinya belum diupdate
+
+        T_Subrogasi updtAkumulukasiSubrogasi = subrogasiRepository.findById(id).get();
+        System.out.println("updtSubro : "+ updtSubrogasi.getId());
+        updtAkumulukasiSubrogasi.setId(id);
+        System.out.println("request recoveries :" + request.getNilaiRecoveries());
+        System.out.println("total akumulasi subrogasi pokok"+ totalAkumulasiSubrogasi);
+        updtAkumulukasiSubrogasi.setAkumulasiSubrogasi(totalAkumulasiSubrogasi);
+
+        
+        return subrogasiRepository.save(updtAkumulukasiSubrogasi);
+
     }
 
     public Iterable<T_Subrogasi> getAll(){
