@@ -62,109 +62,122 @@ public class T_SubrogasiSummaryController {
 
             CLM_PRELIMINARY cPreliminary = cPreliminaryService.findRegistrationId(cInquiry.getRegistrationId());
             T_Subrogasi subroByNoRek = subrogasiService.findByNoRekening(request.getNoRekening());
-            T_Subrogasi_Summary lineNo = subrogasiSummaryService.findByLineNo(request.getCounterAngsuran());
 
             if(subroByNoRek == null){  
-                    if(lineNo != null){
-                        throw new Exception("Counter angsuran sudah terdaftar");
-                    }if(lineNo == null&& request.getCounterAngsuran()==1){
-                        if(cInquiry.getAmtSubrogation() <= 0){
 
-                            T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry,null);
-                            T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_<=_0");
-            
-                            ResponseData<Object> response = new ResponseData<Object>();
-                            response.setStatus("00");
-                            response.setMessage("00");
-                            response.getData().add(subrogasiSummary);
-            
-                            logsService.create(request, response);
-            
-                            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+                T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry,null);
+                T_Subrogasi subroByNoRekFirst = subrogasiService.findByNoRekening(request.getNoRekening());
 
-                        } else if(cInquiry.getAmtSubrogation() > 0){
-                            CLM_SETTLEMENT cSettlement = cSettlementService.create(cInquiry,cPreliminary);
+                List<T_Subrogasi_Summary> subroSummaryBySubroId= subrogasiSummaryService.findBySubroId(subroByNoRekFirst.getId());
+
+                Integer counterAngsuranExist = request.getCounterAngsuran();
+                boolean lineNoExists = subroSummaryBySubroId.stream().map(T_Subrogasi_Summary::getLineNo).anyMatch(counterAngsuranExist::equals);
+
+                Integer counterAngsuranSequential = request.getCounterAngsuran()-1;
+                boolean lineNoSequential = subroSummaryBySubroId.stream().map(T_Subrogasi_Summary::getLineNo).anyMatch(counterAngsuranSequential::equals);
+
+                if(lineNoExists == true){
+                    throw new Exception("Counter angsuran sudah terdaftar");
+                }if(lineNoExists == false&& request.getCounterAngsuran()==1){
+                    if(cInquiry.getAmtSubrogation() <= 0){
+
+                        
+                        T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_<=_0");
+        
+                        ResponseData<Object> response = new ResponseData<Object>();
+                        response.setStatus("00");
+                        response.setMessage("00");
+                        response.getData().add(subrogasiSummary);
+        
+                        logsService.create(request, response);
+        
+                        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+                    } else if(cInquiry.getAmtSubrogation() > 0){
+                        CLM_SETTLEMENT cSettlement = cSettlementService.create(cInquiry,cPreliminary);
+
+                        CLM_SETTLEMENT_SUMMARY cSettlementSummary = cSettlementSummaryService.create( cSettlement, cInquiry);
     
-                            CLM_SETTLEMENT_SUMMARY cSettlementSummary = cSettlementSummaryService.create( cSettlement, cInquiry);
-        
-                            CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create( cInquiry, cSettlement,request);
-        
-                            T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry,null);
-
-                            T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");
-            
-                            ResponseData<Object> response = new ResponseData<Object>();
-                            response.setStatus("00");
-                            response.setMessage("00");
-                            
-                            response.getData().add(cSettlementSummary);
-                            response.getData().add(cRecovPayment);
-
-                            CLM_REGISTRATION_OS cRegistrationOs =cRegistrationOsService.update(cInquiry,cRecovPayment);
-
-                            response.getData().add(cRegistrationOs);
-                            response.getData().add(subrogasiSummary);
-
-                            logsService.create(request, response);
-            
-                            return ResponseEntity.status(HttpStatus.CREATED).body(response);
-                        }
-
-                    }if(request.getCounterAngsuran()!=1 && subrogasiSummaryService.findByLineNo(request.getCounterAngsuran()-1) != null){
-
-                        if(cInquiry.getAmtSubrogation() <= 0){
-
-                            T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry,null);
-                            T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_<=_0");
-            
-                            ResponseData<Object> response = new ResponseData<Object>();
-                            response.setStatus("00");
-                            response.setMessage("00");
-                            response.getData().add(subrogasiSummary);
-            
-                            logsService.create(request, response);
-            
-                            return ResponseEntity.status(HttpStatus.CREATED).body(response);
-
-                        } else if(cInquiry.getAmtSubrogation() > 0){
-                            CLM_SETTLEMENT cSettlement = cSettlementService.create(cInquiry,cPreliminary);
+                        CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create( cInquiry, cSettlement,request);
     
-                            CLM_SETTLEMENT_SUMMARY cSettlementSummary = cSettlementSummaryService.create( cSettlement, cInquiry);
+                        T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");
         
-                            CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create( cInquiry, cSettlement,request);
+                        ResponseData<Object> response = new ResponseData<Object>();
+                        response.setStatus("00");
+                        response.setMessage("00");
+                        
+                        response.getData().add(cSettlementSummary);
+                        response.getData().add(cRecovPayment);
+
+                        CLM_REGISTRATION_OS cRegistrationOs =cRegistrationOsService.update(cInquiry,cRecovPayment);
+
+                        response.getData().add(cRegistrationOs);
+                        response.getData().add(subrogasiSummary);
+
+                        logsService.create(request, response);
         
-                            T_Subrogasi subrogasi = subrogasiService.save(request,cInquiry,null);
+                        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+                    }
 
-                            T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");
-            
-                            ResponseData<Object> response = new ResponseData<Object>();
-                            response.setStatus("00");
-                            response.setMessage("00");
-                            
-                            response.getData().add(cSettlementSummary);
-                            response.getData().add(cRecovPayment);
+                }if(request.getCounterAngsuran()!=1 && lineNoSequential == true){
 
-                            CLM_REGISTRATION_OS cRegistrationOs =cRegistrationOsService.update(cInquiry,cRecovPayment);
+                    if(cInquiry.getAmtSubrogation() <= 0){
 
-                            response.getData().add(cRegistrationOs);
-                            response.getData().add(subrogasiSummary);
+                        T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_<=_0");
+        
+                        ResponseData<Object> response = new ResponseData<Object>();
+                        response.setStatus("00");
+                        response.setMessage("00");
+                        response.getData().add(subrogasiSummary);
+        
+                        logsService.create(request, response);
+        
+                        return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
-                            logsService.create(request, response);
-            
-                            return ResponseEntity.status(HttpStatus.CREATED).body(response);
-                        }
+                    } else if(cInquiry.getAmtSubrogation() > 0){
+                        CLM_SETTLEMENT cSettlement = cSettlementService.create(cInquiry,cPreliminary);
 
-                    }else if(subrogasiSummaryService.findByLineNo(request.getCounterAngsuran()-1) == null){
-                        throw new Exception(" error ! value counter angsuran harus berururutan");
-                    }     
+                        CLM_SETTLEMENT_SUMMARY cSettlementSummary = cSettlementSummaryService.create( cSettlement, cInquiry);
+    
+                        CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create( cInquiry, cSettlement,request);
+
+                        T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");
+        
+                        ResponseData<Object> response = new ResponseData<Object>();
+                        response.setStatus("00");
+                        response.setMessage("00");
+                        
+                        response.getData().add(cSettlementSummary);
+                        response.getData().add(cRecovPayment);
+
+                        CLM_REGISTRATION_OS cRegistrationOs =cRegistrationOsService.update(cInquiry,cRecovPayment);
+
+                        response.getData().add(cRegistrationOs);
+                        response.getData().add(subrogasiSummary);
+
+                        logsService.create(request, response);
+        
+                        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+                    }
+
+                }else if(lineNoSequential == false){
+                    throw new Exception(" error ! value counter angsuran harus berururutan");
+                }     
             }
             else if(subroByNoRek != null){
-                if(lineNo != null){
+                List<T_Subrogasi_Summary> subroSummaryBySubroId= subrogasiSummaryService.findBySubroId(subroByNoRek.getId());
+
+                Integer counterAngsuranExist = request.getCounterAngsuran();
+                boolean lineNoExists = subroSummaryBySubroId.stream().map(T_Subrogasi_Summary::getLineNo).anyMatch(counterAngsuranExist::equals);
+
+                Integer counterAngsuranSequential = request.getCounterAngsuran()-1;
+                boolean lineNoSequential = subroSummaryBySubroId.stream().map(T_Subrogasi_Summary::getLineNo).anyMatch(counterAngsuranSequential::equals);
+
+                if(lineNoExists == true){
                     throw new Exception("Counter angsuran sudah terdaftar");
-                }if(lineNo == null&& request.getCounterAngsuran()==1){
+                }if(lineNoExists == false&& request.getCounterAngsuran()==1){
                     if(cInquiry.getAmtSubrogation() <= 0){
-
-                        T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),null);      
+                        T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),null);
                         T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_<=_0");
         
                         ResponseData<Object> response = new ResponseData<Object>();
@@ -183,8 +196,7 @@ public class T_SubrogasiSummaryController {
     
                         CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create( cInquiry, cSettlement,request);
     
-                        T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),null);      
-
+                        T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),cRecovPayment);
 
                         T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");
         
@@ -205,10 +217,11 @@ public class T_SubrogasiSummaryController {
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);
                     }
 
-                }if(request.getCounterAngsuran()!=1 && subrogasiSummaryService.findByLineNo(request.getCounterAngsuran()-1) != null){
+                }if(request.getCounterAngsuran()!=1 && lineNoSequential == true){
+
                     if(cInquiry.getAmtSubrogation() <= 0){
 
-                        T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),null);  
+                        T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),null);
                         T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_<=_0");
         
                         ResponseData<Object> response = new ResponseData<Object>();
@@ -226,8 +239,8 @@ public class T_SubrogasiSummaryController {
                         CLM_SETTLEMENT_SUMMARY cSettlementSummary = cSettlementSummaryService.create( cSettlement, cInquiry);
     
                         CLM_RECOV_PAYMENT cRecovPayment = cRecovePaymentService.create( cInquiry, cSettlement,request);
-    
-                        T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),null);  
+                            
+                        T_Subrogasi subrogasi = subrogasiService.update(request,cInquiry,subroByNoRek.getId(),cRecovPayment);
 
                         T_Subrogasi_Summary subrogasiSummary = subrogasiSummaryService.save(request,cInquiry,subrogasi,"logic_subro_>_0");
         
@@ -247,9 +260,10 @@ public class T_SubrogasiSummaryController {
         
                         return ResponseEntity.status(HttpStatus.CREATED).body(response);
                     }
-                }else if(subrogasiSummaryService.findByLineNo(request.getCounterAngsuran()-1) == null){
+
+                }else if(lineNoSequential == false){
                     throw new Exception(" error ! value counter angsuran harus berururutan");
-                }
+                }     
             }
         }
         throw new Exception("Data cInquiry tidak ditemukan");

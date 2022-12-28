@@ -93,3 +93,171 @@
 28-12-2022 08:07:56.676 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
 28-12-2022 08:07:57.480 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 28-12-2022 08:07:57.994 [restartedMain] - Started DemoTestApplication in 1.353 seconds (JVM running for 124.892)
+28-12-2022 08:27:11.755 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 20039 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 08:27:11.756 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 08:27:11.757 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 08:27:14.748 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 08:27:16.131 [restartedMain] - Started DemoTestApplication in 4.834 seconds (JVM running for 5.239)
+28-12-2022 08:55:14.475 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 08:55:14.476 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 08:55:14.477 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 08:55:17.897 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 08:55:19.650 [restartedMain] - Started DemoTestApplication in 5.649 seconds (JVM running for 6.103)
+28-12-2022 08:56:04.174 [http-nio-8080-exec-2] - ExpiredJwtException Jwt :
+28-12-2022 08:56:04.187 [http-nio-8080-exec-2] - ExpiredJwtException Jwt :
+28-12-2022 08:56:09.075 [http-nio-8080-exec-3] - ExpiredJwtException Jwt :
+28-12-2022 09:00:31.242 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:00:31.243 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:00:31.243 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:00:32.105 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:00:32.767 [restartedMain] - Started DemoTestApplication in 1.558 seconds (JVM running for 319.22)
+28-12-2022 09:00:34.533 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:00:34.533 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:00:34.534 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:00:35.623 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:00:36.392 [restartedMain] - Started DemoTestApplication in 1.911 seconds (JVM running for 322.846)
+28-12-2022 09:00:38.100 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:00:38.100 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:00:38.101 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:00:38.864 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:00:39.314 [restartedMain] - Started DemoTestApplication in 1.255 seconds (JVM running for 325.767)
+28-12-2022 09:00:41.244 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:00:41.245 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:00:41.245 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:00:41.931 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:00:42.525 [restartedMain] - Started DemoTestApplication in 1.308 seconds (JVM running for 328.978)
+28-12-2022 09:01:08.321 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:01:08.322 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:01:08.322 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:01:09.161 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:01:09.794 [restartedMain] - Started DemoTestApplication in 1.514 seconds (JVM running for 356.247)
+28-12-2022 09:01:11.501 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:01:11.504 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:01:11.506 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:01:12.286 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:01:12.990 [restartedMain] - Started DemoTestApplication in 1.548 seconds (JVM running for 359.443)
+28-12-2022 09:01:14.543 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:01:14.544 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:01:14.544 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:01:15.256 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:01:15.832 [restartedMain] - Started DemoTestApplication in 1.321 seconds (JVM running for 362.285)
+28-12-2022 09:01:36.617 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:01:36.618 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:01:36.618 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:01:37.227 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:01:37.816 [restartedMain] - Started DemoTestApplication in 1.221 seconds (JVM running for 384.269)
+28-12-2022 09:01:40.500 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:01:40.501 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:01:40.501 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:01:41.187 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:01:41.673 [restartedMain] - Started DemoTestApplication in 1.194 seconds (JVM running for 388.126)
+28-12-2022 09:02:05.356 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:02:05.357 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:02:05.358 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:02:06.183 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:02:06.940 [restartedMain] - Started DemoTestApplication in 1.621 seconds (JVM running for 413.394)
+28-12-2022 09:02:08.567 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:02:08.568 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:02:08.568 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:02:09.152 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:02:09.584 [restartedMain] - Started DemoTestApplication in 1.056 seconds (JVM running for 416.038)
+28-12-2022 09:02:13.203 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:02:13.203 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:02:13.203 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:02:13.781 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:02:14.269 [restartedMain] - Started DemoTestApplication in 1.095 seconds (JVM running for 420.723)
+28-12-2022 09:02:59.039 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:02:59.039 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:02:59.039 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:02:59.645 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:03:00.175 [restartedMain] - Started DemoTestApplication in 1.163 seconds (JVM running for 466.628)
+28-12-2022 09:03:02.823 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:03:02.824 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:03:02.825 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:03:03.522 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:03:03.975 [restartedMain] - Started DemoTestApplication in 1.182 seconds (JVM running for 470.429)
+28-12-2022 09:03:10.857 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:03:10.858 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:03:10.858 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:03:11.607 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:03:12.125 [restartedMain] - Started DemoTestApplication in 1.349 seconds (JVM running for 478.578)
+28-12-2022 09:03:14.868 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:03:14.868 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:03:14.868 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:03:15.536 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:03:16.098 [restartedMain] - Started DemoTestApplication in 1.251 seconds (JVM running for 482.551)
+28-12-2022 09:03:18.389 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:03:18.389 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:03:18.389 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:03:19.350 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:03:19.864 [restartedMain] - Started DemoTestApplication in 1.51 seconds (JVM running for 486.318)
+28-12-2022 09:03:21.757 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:03:21.757 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:03:21.757 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:03:22.523 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:03:22.983 [restartedMain] - Started DemoTestApplication in 1.284 seconds (JVM running for 489.436)
+28-12-2022 09:04:15.832 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:04:15.832 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:04:15.832 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:04:16.437 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:04:16.858 [restartedMain] - Started DemoTestApplication in 1.058 seconds (JVM running for 543.311)
+28-12-2022 09:05:15.566 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:05:15.567 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:05:15.568 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:05:16.187 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:05:16.563 [restartedMain] - Started DemoTestApplication in 1.025 seconds (JVM running for 603.016)
+28-12-2022 09:05:25.215 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:05:25.215 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:05:25.215 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:05:25.795 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:05:26.254 [restartedMain] - Started DemoTestApplication in 1.064 seconds (JVM running for 612.707)
+28-12-2022 09:05:52.029 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:05:52.030 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:05:52.031 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:05:52.831 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:05:53.360 [restartedMain] - Started DemoTestApplication in 1.362 seconds (JVM running for 639.814)
+28-12-2022 09:05:55.017 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:05:55.018 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:05:55.018 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:05:55.607 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:05:56.147 [restartedMain] - Started DemoTestApplication in 1.158 seconds (JVM running for 642.6)
+28-12-2022 09:06:10.977 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:06:10.978 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:06:10.982 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:06:11.700 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:06:12.120 [restartedMain] - Started DemoTestApplication in 1.18 seconds (JVM running for 658.573)
+28-12-2022 09:06:25.888 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:06:25.889 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:06:25.889 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:06:26.572 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:06:27.083 [restartedMain] - Started DemoTestApplication in 1.23 seconds (JVM running for 673.537)
+28-12-2022 09:06:44.773 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:06:44.773 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:06:44.773 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:06:45.354 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:06:45.849 [restartedMain] - Started DemoTestApplication in 1.095 seconds (JVM running for 692.302)
+28-12-2022 09:06:47.484 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:06:47.484 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:06:47.484 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:06:48.123 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:06:48.716 [restartedMain] - Started DemoTestApplication in 1.271 seconds (JVM running for 695.169)
+28-12-2022 09:07:54.635 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:07:54.635 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:07:54.635 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:07:55.844 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:07:56.512 [restartedMain] - Started DemoTestApplication in 1.916 seconds (JVM running for 762.965)
+28-12-2022 09:07:58.208 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:07:58.209 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:07:58.209 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:07:58.766 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:07:59.194 [restartedMain] - Started DemoTestApplication in 1.004 seconds (JVM running for 765.647)
+28-12-2022 09:08:12.960 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:08:12.960 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:08:12.960 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:08:13.805 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:08:14.431 [restartedMain] - Started DemoTestApplication in 1.502 seconds (JVM running for 780.884)
+28-12-2022 09:08:16.176 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 29186 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 09:08:16.176 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 09:08:16.177 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 09:08:16.680 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 09:08:17.093 [restartedMain] - Started DemoTestApplication in 0.944 seconds (JVM running for 783.547)
