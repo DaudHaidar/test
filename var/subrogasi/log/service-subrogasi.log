@@ -2344,3 +2344,13 @@ java.lang.Error: Unresolved compilation problem:
 28-12-2022 15:33:27.440 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
 28-12-2022 15:33:28.008 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 28-12-2022 15:33:28.420 [restartedMain] - Started DemoTestApplication in 1.011 seconds (JVM running for 1916.652)
+28-12-2022 15:43:04.365 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 178869 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 15:43:04.366 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 15:43:04.367 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 15:43:07.604 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 15:43:08.926 [restartedMain] - Started DemoTestApplication in 4.985 seconds (JVM running for 5.355)
+28-12-2022 15:48:40.890 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 180795 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 15:48:40.891 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 15:48:40.892 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 15:48:44.508 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 15:48:45.962 [restartedMain] - Started DemoTestApplication in 5.579 seconds (JVM running for 5.995)

@@ -84,8 +84,6 @@ public class T_SubrogasiService {
         
         subrogasiRepository.save(updtSubrogasi);
 
-
-
         Double totalAkumulasiSubrogasi;
         Double totalNominalSubrogasiPokok;
 
@@ -114,15 +112,14 @@ public class T_SubrogasiService {
 
         //alasan diupdate 2 kali karena table subrogasi_summary belum ke create kalau table subrogasinya belum diupdate
 
-        T_Subrogasi updtAkumulukasiSubrogasi = subrogasiRepository.findById(id).get();
+        T_Subrogasi updtAkumulasiSubrogasi = subrogasiRepository.findById(id).get();
         System.out.println("updtSubro : "+ updtSubrogasi.getId());
-        updtAkumulukasiSubrogasi.setId(id);
+        updtAkumulasiSubrogasi.setId(id);
         System.out.println("request recoveries :" + request.getNilaiRecoveries());
         System.out.println("total akumulasi subrogasi pokok"+ totalAkumulasiSubrogasi);
-        updtAkumulukasiSubrogasi.setAkumulasiSubrogasi(totalAkumulasiSubrogasi);
+        updtAkumulasiSubrogasi.setAkumulasiSubrogasi(totalAkumulasiSubrogasi);
 
-        
-        return subrogasiRepository.save(updtAkumulukasiSubrogasi);
+        return subrogasiRepository.save(updtAkumulasiSubrogasi);
 
     }
 
