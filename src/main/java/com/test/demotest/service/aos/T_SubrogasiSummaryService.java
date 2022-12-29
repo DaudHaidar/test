@@ -73,23 +73,11 @@ public class T_SubrogasiSummaryService {
             List<T_Subrogasi_Summary> subroSummaryFilteredByDate = subroSummaryBySubroId.stream().sorted(Comparator.comparing(T_Subrogasi_Summary::getCreatedDate)).collect(Collectors.toList());
             T_Subrogasi_Summary getLastIndex = subroSummaryFilteredByDate.size() < 2 ? subroSummaryFilteredByDate.get(subroSummaryFilteredByDate.size() - 1):subroSummaryFilteredByDate.get(subroSummaryFilteredByDate.size() - 2);
             Double nominalLebihSubroExisting = getLastIndex.getNominalSubrogasLebih();
-    
-    
-            System.out.println("GET ID :" + subrogasiId.getId());
-            System.out.println("GET SUBRO BY ID " + subroSummaryBySubroId);
-            System.out.println("LIST SUBRO SUMARRY FILTERED :" + subroSummaryFilteredByDate);
-            System.out.println("SIZE LIST : "+ subroSummaryFilteredByDate.size());
-            System.out.println("SIZE INDEX "+ subroSummaryFilteredByDate.size());
-            System.out.println("LIST SUBRO LAST INDEX :" + subroSummaryFilteredByDate.get(subroSummaryFilteredByDate.size() - 1));
-            System.out.println("subrosummary id : " +  subroSummaryFilteredByDate.get(subroSummaryFilteredByDate.size() - 1).getId());
-            System.out.println("nominal lebih subro  "+ nominalLebihSubroExisting);
 
             nominalSubrogasiLebih = request.getNilaiRecoveries() + nominalLebihSubroExisting;
             T_Subrogasi_Summary updtNominalSubrogasiSummary = subrogasiSummaryRepository.findById(createSubroSummary.getId()).get();
             updtNominalSubrogasiSummary.setId(createSubroSummary.getId());
             updtNominalSubrogasiSummary.setNominalSubrogasLebih(nominalSubrogasiLebih);
-
-            System.out.println("UPDATE NOMINAL LEBIH" + updtNominalSubrogasiSummary);
 
             return subrogasiSummaryRepository.save(updtNominalSubrogasiSummary);
 

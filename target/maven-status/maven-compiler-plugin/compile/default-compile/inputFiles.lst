@@ -1,56 +1,56 @@
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/acs/CLM_RECOV_PAYMENTService.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/controller/M_UserController.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/dto/RequestSubrogasi.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/dto/ResponseDataToken.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/acs/CLM_SETTLEMENT_SUMMARYRepository.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/acs/CLM_SETTLEMENT_SUMMARYService.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/aos/T_SubrogasiRepository.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/aos/T_TokenService.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/acs/CLM_RECOV_PAYMENT.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/dto/ResponseDataSubrogasi.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/acs/CLM_INQUIRY_SUBROGATIONRepository.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/controller/acs/CLM_RECOV_PAYMENTController.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/aos/T_TokenRepository.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/acs/CLM_REGISTRATION_OS.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/acs/CLM_REGISTRATION_OSService.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/aos/LogsRepository.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/controller/AuthController.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/acs/CLM_PRELIMINARYService.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/acs/CLM_INQUIRY_SUBROGATION_CREDIT.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/dto/ResponseData.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/controller/T_SubrogasiSummaryController.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/DemoTestApplication.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/Jwt/JwtFilter.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/controller/acs/CLM_SETTLEMENTController.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/config/database/dbAos.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/acs/CLM_INQUIRY_SUBROGRATIONService.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/dto/RequestLogin.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/controller/acs/CLM_SETTLEMENT_SUMMARYController.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/acs/CLM_SETTLEMENTRepository.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/M_User.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/acs/CLM_SETTLEMENT_SUMMARY.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/aos/T_SubrogasiSummaryService.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/config/AuditorAwareImpl.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/acs/CLM_SETTLEMENT.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/Role.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/acs/CLM_SETTLEMENTService.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/controller/acs/CLM_INQUIRY_SUBROGRATIONController.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/aos/M_UserRepository.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/aos/T_SubrogasiService.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/aos/LogsService.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/acs/CLM_PRELIMINARYRepository.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/Jwt/JwtUtils.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/dto/ResponseDataUser.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/acs/CLM_PRELIMINARY.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/T_Subrogasi.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/acs/CLM_REGISTRATION_OSRepository.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/Logs.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/config/database/dbAcs.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/service/aos/M_UserService.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/aos/T_SubrogasiSummaryRepository.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/T_Token.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/controller/acs/CLM_REGISTRATION_OSController.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/repository/acs/CLM_RECOV_PAYMENTRepository.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/BaseEnity.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/config/SecurityConfig.java
-/home/dell/Documents/test mssql/demo/src/main/java/com/test/demotest/entity/aos/T_Subrogasi_Summary.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/service/acs/CLM_SETTLEMENT_SUMMARYService.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/acs/CLM_SETTLEMENT.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/acs/CLM_INQUIRY_SUBROGATION_CREDIT.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/acs/CLM_REGISTRATION_OS.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/aos/BaseEnity.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/config/database/dbAos.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/repository/acs/CLM_SETTLEMENTRepository.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/controller/acs/CLM_RECOV_PAYMENTController.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/controller/acs/CLM_INQUIRY_SUBROGRATIONController.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/controller/acs/CLM_REGISTRATION_OSController.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/service/aos/T_TokenService.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/service/aos/T_SubrogasiSummaryService.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/controller/acs/CLM_SETTLEMENTController.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/aos/T_Token.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/service/aos/LogsService.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/aos/Logs.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/dto/ResponseDataSubrogasi.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/repository/aos/T_SubrogasiSummaryRepository.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/config/SecurityConfig.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/dto/ResponseData.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/dto/RequestSubrogasi.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/aos/M_User.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/repository/acs/CLM_SETTLEMENT_SUMMARYRepository.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/aos/T_Subrogasi_Summary.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/controller/T_SubrogasiSummaryController.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/controller/AuthController.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/dto/ResponseDataToken.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/dto/RequestLogin.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/config/database/dbAcs.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/DemoTestApplication.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/acs/CLM_SETTLEMENT_SUMMARY.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/acs/CLM_PRELIMINARY.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/repository/aos/T_SubrogasiRepository.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/service/aos/T_SubrogasiService.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/repository/acs/CLM_REGISTRATION_OSRepository.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/repository/aos/T_TokenRepository.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/repository/acs/CLM_PRELIMINARYRepository.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/service/acs/CLM_PRELIMINARYService.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/service/acs/CLM_RECOV_PAYMENTService.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/aos/Role.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/service/acs/CLM_REGISTRATION_OSService.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/Jwt/JwtFilter.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/service/acs/CLM_INQUIRY_SUBROGRATIONService.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/controller/acs/CLM_SETTLEMENT_SUMMARYController.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/Jwt/JwtUtils.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/service/acs/CLM_SETTLEMENTService.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/aos/T_Subrogasi.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/repository/acs/CLM_INQUIRY_SUBROGATIONRepository.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/service/aos/M_UserService.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/config/AuditorAwareImpl.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/dto/ResponseDataUser.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/repository/aos/M_UserRepository.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/repository/aos/LogsRepository.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/entity/acs/CLM_RECOV_PAYMENT.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/controller/M_UserController.java
+/home/dell/Documents/askrindo/subrogasi/src/main/java/com/test/demotest/repository/acs/CLM_RECOV_PAYMENTRepository.java

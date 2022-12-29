@@ -2359,3 +2359,8 @@ java.lang.Error: Unresolved compilation problem:
 28-12-2022 16:22:10.273 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
 28-12-2022 16:22:13.604 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 28-12-2022 16:22:15.116 [restartedMain] - Started DemoTestApplication in 5.273 seconds (JVM running for 5.67)
+28-12-2022 17:07:00.256 [restartedMain] - Starting DemoTestApplication using Java 1.8.0_351 on dell-Latitude-5480 with PID 206087 (/home/dell/Documents/test mssql/demo/target/classes started by dell in /home/dell/Documents/test mssql/demo)
+28-12-2022 17:07:00.257 [restartedMain] - Running with Spring Boot v2.7.4, Spring v5.3.23
+28-12-2022 17:07:00.258 [restartedMain] - No active profile set, falling back to 1 default profile: "default"
+28-12-2022 17:07:03.231 [restartedMain] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-12-2022 17:07:04.510 [restartedMain] - Started DemoTestApplication in 4.658 seconds (JVM running for 5.011)

@@ -40,6 +40,7 @@ public class T_SubrogasiService {
         T_Subrogasi tSubrogasi = new T_Subrogasi();
 
         Double akumulasiSubrogasi = cInquiry.getAmtRecovery()+request.getNilaiRecoveries();
+
         tSubrogasi.setId(UUID.randomUUID().toString());
         tSubrogasi.setNoRekening(request.getNoRekening());
         tSubrogasi.setNomorPeserta(request.getNoRekening());
@@ -89,21 +90,21 @@ public class T_SubrogasiService {
 
         if(cRecovPayment == null){
 
-            List<T_Subrogasi_Summary> getNominalSubrogasiPokok = subrogasiSummaryService.findBySubroId(id);
+            List<T_Subrogasi_Summary> getNominalSubrogasiPokok = subrogasiSummaryService.findBySubroId(updtSubrogasi.getId());
              
             List<T_Subrogasi_Summary> getNominalSubrogasiPokokSortedByDate = getNominalSubrogasiPokok.stream().sorted(Comparator.comparing(T_Subrogasi_Summary::getCreatedDate)).collect(Collectors.toList());
     
             T_Subrogasi_Summary getLastIndexSubroSummary = getNominalSubrogasiPokokSortedByDate.get(getNominalSubrogasiPokokSortedByDate.size()-1);
     
-            totalNominalSubrogasiPokok = getNominalSubrogasiPokokSortedByDate.stream().filter(subrogasiLebih-> subrogasiLebih.getNominalSubrogasLebih()>0).mapToDouble(nominalSubroPokok -> nominalSubroPokok.getNominalSubrogasiPokok()).sum();
+            totalNominalSubrogasiPokok = getNominalSubrogasiPokok.stream().filter(subrogasiLebih-> subrogasiLebih.getNominalSubrogasLebih()>0).mapToDouble(nominalSubroPokok -> nominalSubroPokok.getNominalSubrogasiPokok()).sum();
     
             List<T_Subrogasi_Summary >subroGetLastIndexByFilter = getNominalSubrogasiPokokSortedByDate.stream().filter(subrogasiLebih-> subrogasiLebih.getNominalSubrogasLebih()>0).collect(Collectors.toList());
-    
-            System.out.println("GET LASTT NDEXX POKOK :" + subroGetLastIndexByFilter);
-    
+
             System.out.println("GET NOMINAL SUBROGASI POKOK :" + getNominalSubrogasiPokokSortedByDate);
+            System.out.println("GET LASTT NDEXX POKOK :" + subroGetLastIndexByFilter);
             System.out.println("cInquiry amt recovery :" +cInquiry.getAmtRecovery());
             System.out.println("totalNominalSubrogasiPokok :" + totalNominalSubrogasiPokok);
+            
             totalAkumulasiSubrogasi = getLastIndexSubroSummary.getSubrogasiId().getAkumulasiSubrogasi()+totalNominalSubrogasiPokok;      
             
        }else{
