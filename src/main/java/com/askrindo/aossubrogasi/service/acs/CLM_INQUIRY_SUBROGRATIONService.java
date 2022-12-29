@@ -20,7 +20,6 @@ public class CLM_INQUIRY_SUBROGRATIONService {
         try {
             return acsRepository.findClmQuery(noRekening);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }   
     }
@@ -29,7 +28,6 @@ public class CLM_INQUIRY_SUBROGRATIONService {
         try {
             return acsRepository.findClmSubrogration(sisa);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }

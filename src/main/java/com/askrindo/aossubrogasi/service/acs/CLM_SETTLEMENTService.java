@@ -30,7 +30,6 @@ public class CLM_SETTLEMENTService{
         Integer version =0;
 
         List<CLM_SETTLEMENT> settlementSortedByDate = settlement.stream().sorted(Comparator.comparing(CLM_SETTLEMENT::getCreatedDate)).collect(Collectors.toList());
-        System.out.println("CLM SORTED BY DATE: "+ settlementSortedByDate);
         
         CLM_SETTLEMENT lastIndexRegistration = settlementSortedByDate.get(settlement.size()-1);
 

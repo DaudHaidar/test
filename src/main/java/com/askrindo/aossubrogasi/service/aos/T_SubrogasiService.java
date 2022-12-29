@@ -67,10 +67,9 @@ public class T_SubrogasiService {
         if(cRecovPayment == null){
             sisaKewajibanSubrogasi = cInquiry.getAmtSubrogation();
             
-            
        }else{
            sisaKewajibanSubrogasi = cRecovPayment.getAmtShsAfter();
-          
+          System.out.println();
        }
 
         T_Subrogasi updtSubrogasi = subrogasiRepository.findById(id).get();
@@ -97,27 +96,15 @@ public class T_SubrogasiService {
             T_Subrogasi_Summary getLastIndexSubroSummary = getNominalSubrogasiPokokSortedByDate.get(getNominalSubrogasiPokokSortedByDate.size()-1);
     
             totalNominalSubrogasiPokok = getNominalSubrogasiPokok.stream().filter(subrogasiLebih-> subrogasiLebih.getNominalSubrogasLebih()>0).mapToDouble(nominalSubroPokok -> nominalSubroPokok.getNominalSubrogasiPokok()).sum();
-    
-            List<T_Subrogasi_Summary >subroGetLastIndexByFilter = getNominalSubrogasiPokokSortedByDate.stream().filter(subrogasiLebih-> subrogasiLebih.getNominalSubrogasLebih()>0).collect(Collectors.toList());
-
-            System.out.println("GET NOMINAL SUBROGASI POKOK :" + getNominalSubrogasiPokokSortedByDate);
-            System.out.println("GET LASTT NDEXX POKOK :" + subroGetLastIndexByFilter);
-            System.out.println("cInquiry amt recovery :" +cInquiry.getAmtRecovery());
-            System.out.println("totalNominalSubrogasiPokok :" + totalNominalSubrogasiPokok);
-            
+           
             totalAkumulasiSubrogasi = getLastIndexSubroSummary.getSubrogasiId().getAkumulasiSubrogasi()+totalNominalSubrogasiPokok;      
             
        }else{
            totalAkumulasiSubrogasi= cInquiry.getAmtRecovery()+request.getNilaiRecoveries();
        }
 
-        //alasan diupdate 2 kali karena table subrogasi_summary belum ke create kalau table subrogasinya belum diupdate
-
         T_Subrogasi updtAkumulasiSubrogasi = subrogasiRepository.findById(id).get();
-        System.out.println("updtSubro : "+ updtSubrogasi.getId());
         updtAkumulasiSubrogasi.setId(id);
-        System.out.println("request recoveries :" + request.getNilaiRecoveries());
-        System.out.println("total akumulasi subrogasi pokok"+ totalAkumulasiSubrogasi);
         updtAkumulasiSubrogasi.setAkumulasiSubrogasi(totalAkumulasiSubrogasi);
 
         return subrogasiRepository.save(updtAkumulasiSubrogasi);
@@ -143,7 +130,6 @@ public class T_SubrogasiService {
         try {
             return subrogasiRepository.findByNoRekening(noRekening);
         } catch (Exception e) {
-            System.out.println("error service :"+ e);
             throw new RuntimeException(e.getMessage());
         }
         

@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -118,6 +116,7 @@ public class T_SubrogasiSummaryController {
             else if(subroByNoRek != null){
 
                 List<T_Subrogasi_Summary> subroSummaryBySubroId= subrogasiSummaryService.findBySubroId(subroByNoRek.getId());
+                
                 List<T_Subrogasi_Summary> subroSummaryBySubroIdSortedByDate = subroSummaryBySubroId.stream().sorted(Comparator.comparing(T_Subrogasi_Summary::getCreatedDate)).collect(Collectors.toList());
                 
                 Integer getLastLineNo = subroSummaryBySubroIdSortedByDate.get(subroSummaryBySubroIdSortedByDate.size()-1).getLineNo();

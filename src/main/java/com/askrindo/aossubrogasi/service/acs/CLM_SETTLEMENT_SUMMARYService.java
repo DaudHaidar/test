@@ -7,8 +7,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.askrindo.aossubrogasi.dto.RequestSubrogasi;
 import com.askrindo.aossubrogasi.entity.acs.CLM_INQUIRY_SUBROGATION_CREDIT;
 import com.askrindo.aossubrogasi.entity.acs.CLM_SETTLEMENT;
 import com.askrindo.aossubrogasi.entity.acs.CLM_SETTLEMENT_SUMMARY;
