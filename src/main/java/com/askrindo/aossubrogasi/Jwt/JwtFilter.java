@@ -57,12 +57,9 @@ public class JwtFilter extends GenericFilterBean {
         try {
             HttpServletRequest httpServletRequest = (HttpServletRequest) request;
             String jwt = ParseJwt(httpServletRequest);
-            // System.out.println("JWTTTTTT:" + jwt);
-
             if(StringUtils.hasText(jwt) ){
                 if (this.jwtUtils.validateJwtToken(jwt)) {
                     Authentication authentication = this.jwtUtils.getAuthentication(jwt);
-                    System.out.println(authentication);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
@@ -70,12 +67,10 @@ public class JwtFilter extends GenericFilterBean {
             chain.doFilter(request, response);   
             this.resetAuthenticationAfterRequest();
 
-        } catch (ExpiredJwtException eje) {
-            System.out.println("EJEEEEEE"+eje.hashCode());
-            // tokenService.update(null, null, null, eje.hashCode());
-            logger.info("Security exception for user {} - {}", eje.getClaims().getSubject(), eje.getMessage());
+        } catch (ExpiredJwtException e) {
+            logger.info("Security exception for user {} - {}", e.getClaims().getSubject(), e.getMessage());
             ((HttpServletResponse) response).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            logger.debug("Exception " + eje.getMessage(), eje);
+            logger.debug("Exception " + e.getMessage(), e);
         }
        
     }

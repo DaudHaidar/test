@@ -3,7 +3,6 @@ package com.askrindo.aossubrogasi.service.aos;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -27,10 +26,11 @@ public class T_SubrogasiService {
     @Autowired
     private T_SubrogasiSummaryService subrogasiSummaryService;
 
+
     public T_Subrogasi save(RequestSubrogasi request, CLM_INQUIRY_SUBROGATION_CREDIT cInquiry, CLM_RECOV_PAYMENT cRecovPayment){
 
         Double sisaKewajibanSubrogasi ;
-
+    
         if(cRecovPayment == null){
             sisaKewajibanSubrogasi = cInquiry.getAmtSubrogation();
        }else{
@@ -53,6 +53,7 @@ public class T_SubrogasiService {
         tSubrogasi.setIdKlaim(UUID.randomUUID().toString());
         tSubrogasi.setStatus("0");
 
+        // System.out.println("LastInquirySubrogation saat create :" + lastInquiryAmtRecovery(cInquiry.getAmtRecovery()));
         return subrogasiRepository.save(tSubrogasi);
     }
 
@@ -60,54 +61,52 @@ public class T_SubrogasiService {
 
         Double sisaKewajibanSubrogasi ;
 
+        Double totalAkumulasiSubrogasi;
+        Double totalNominalSubrogasiPokok;
+                
         if(!(subrogasiRepository.findById(id).isPresent())){
             throw new RuntimeException("subrogasi dengan id"+ id+"tidak ditemukan");
         }
 
-        if(cRecovPayment == null){
-            sisaKewajibanSubrogasi = cInquiry.getAmtSubrogation();
-            
-       }else{
-           sisaKewajibanSubrogasi = cRecovPayment.getAmtShsAfter();
-          System.out.println();
-       }
-
+        
         T_Subrogasi updtSubrogasi = subrogasiRepository.findById(id).get();
-        System.out.println("updtSubro : "+ updtSubrogasi.getId());
         updtSubrogasi.setId(id);
         updtSubrogasi.setNoRekening(request.getNoRekening());
         updtSubrogasi.setNomorPeserta(request.getNoRekening());
         updtSubrogasi.setNominalClaim(request.getNilaiRecoveries());
-        updtSubrogasi.setSisaKewajibanSubrogasi(sisaKewajibanSubrogasi);
-        updtSubrogasi.setAkumulasiSubrogasi(cInquiry.getAmtRecovery()+request.getNilaiRecoveries());
-        updtSubrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
-        
-        subrogasiRepository.save(updtSubrogasi);
-
-        Double totalAkumulasiSubrogasi;
-        Double totalNominalSubrogasiPokok;
 
         if(cRecovPayment == null){
-
-            List<T_Subrogasi_Summary> getNominalSubrogasiPokok = subrogasiSummaryService.findBySubroId(updtSubrogasi.getId());
-             
-            List<T_Subrogasi_Summary> getNominalSubrogasiPokokSortedByDate = getNominalSubrogasiPokok.stream().sorted(Comparator.comparing(T_Subrogasi_Summary::getCreatedDate)).collect(Collectors.toList());
-    
-            T_Subrogasi_Summary getLastIndexSubroSummary = getNominalSubrogasiPokokSortedByDate.get(getNominalSubrogasiPokokSortedByDate.size()-1);
-    
-            totalNominalSubrogasiPokok = getNominalSubrogasiPokok.stream().filter(subrogasiLebih-> subrogasiLebih.getNominalSubrogasLebih()>0).mapToDouble(nominalSubroPokok -> nominalSubroPokok.getNominalSubrogasiPokok()).sum();
-           
-            totalAkumulasiSubrogasi = getLastIndexSubroSummary.getSubrogasiId().getAkumulasiSubrogasi()+totalNominalSubrogasiPokok;      
             
+            // List<T_Subrogasi_Summary> getNominalSubrogasiPokok = subrogasiSummaryService.findBySubroId(updtSubrogasi.getId());
+             
+            // List<T_Subrogasi_Summary> getNominalSubrogasiPokokSortedByDate = getNominalSubrogasiPokok.stream().sorted(Comparator.comparing(T_Subrogasi_Summary::getCreatedDate).reversed()).collect(Collectors.toList());
+    
+            // T_Subrogasi_Summary getLastIndexSubroSummary = getNominalSubrogasiPokokSortedByDate.get(getNominalSubrogasiPokokSortedByDate.size()-1);
+            
+            // List<T_Subrogasi_Summary> getSubroMoreThanZero = getNominalSubrogasiPokokSortedByDate.stream().filter(subrogasiLebih-> subrogasiLebih.getNominalSubrogasLebih()>0).collect(Collectors.toList());
+
+            // totalNominalSubrogasiPokok = getNominalSubrogasiPokok.stream().filter(subrogasiLebih-> subrogasiLebih.getNominalSubrogasLebih()>0).mapToDouble(nominalSubroPokok -> nominalSubroPokok.getNominalSubrogasiPokok()).sum();
+
+            // T_Subrogasi_Summary getLastIndexSubroSummaryBySubrogasiLebih= getSubroMoreThanZero.get(getSubroMoreThanZero.size()-1);
+
+            // System.out.println("updtSubrogasi : "+updtSubrogasi.getAkumulasiSubrogasi());
+
+            // System.out.println("totalNominalSubrogasiPokok : "+totalNominalSubrogasiPokok);
+
+            // System.out.println("LastInquiryAmtRecovery saat update :" + lastInquiryAmtRecovery);
+            
+            sisaKewajibanSubrogasi = cInquiry.getAmtSubrogation();
+            totalAkumulasiSubrogasi = updtSubrogasi.getAkumulasiSubrogasi()+request.getNilaiRecoveries();
        }else{
-           totalAkumulasiSubrogasi= cInquiry.getAmtRecovery()+request.getNilaiRecoveries();
+           sisaKewajibanSubrogasi = cRecovPayment.getAmtShsAfter();
+           totalAkumulasiSubrogasi=cInquiry.getAmtRecovery()+request.getNilaiRecoveries();
        }
 
-        T_Subrogasi updtAkumulasiSubrogasi = subrogasiRepository.findById(id).get();
-        updtAkumulasiSubrogasi.setId(id);
-        updtAkumulasiSubrogasi.setAkumulasiSubrogasi(totalAkumulasiSubrogasi);
-
-        return subrogasiRepository.save(updtAkumulasiSubrogasi);
+        updtSubrogasi.setSisaKewajibanSubrogasi(sisaKewajibanSubrogasi);
+        updtSubrogasi.setAkumulasiSubrogasi(totalAkumulasiSubrogasi);
+        updtSubrogasi.setPresentasiCoverage(Double.valueOf(request.getCovRatio()));
+        
+        return subrogasiRepository.save(updtSubrogasi);
 
     }
 

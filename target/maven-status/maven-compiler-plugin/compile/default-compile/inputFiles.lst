@@ -1,12 +1,9 @@
-/home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/controller/acs/CLM_INQUIRY_SUBROGRATIONController.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/repository/aos/T_SubrogasiSummaryRepository.java
-/home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/controller/acs/CLM_RECOV_PAYMENTController.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/dto/RequestLogin.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/config/SecurityConfig.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/dto/ResponseData.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/service/acs/CLM_PRELIMINARYService.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/config/database/dbAcs.java
-/home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/controller/acs/CLM_SETTLEMENTController.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/entity/aos/T_Token.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/Jwt/JwtUtils.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/service/aos/LogsService.java
@@ -18,7 +15,6 @@
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/service/acs/CLM_SETTLEMENT_SUMMARYService.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/service/acs/CLM_REGISTRATION_OSService.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/entity/aos/T_Subrogasi.java
-/home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/controller/acs/CLM_REGISTRATION_OSController.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/controller/AuthController.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/entity/aos/Logs.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/controller/M_UserController.java
@@ -50,7 +46,6 @@
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/repository/acs/CLM_PRELIMINARYRepository.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/repository/acs/CLM_RECOV_PAYMENTRepository.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/service/aos/M_UserService.java
-/home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/controller/acs/CLM_SETTLEMENT_SUMMARYController.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/DemoTestApplication.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/entity/aos/Role.java
 /home/dell/Documents/askrindo/subrogasi/src/main/java/com/askrindo/aossubrogasi/service/acs/CLM_RECOV_PAYMENTService.java
